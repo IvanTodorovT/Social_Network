@@ -8,7 +8,15 @@
 </head>
 <body>
 
-		<div class="container">
+
+<a href="wall" style="margin-left:40em;">Wall</a>
+<a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
+<a href="#" style="margin-left:3em;">Edit</a>
+<a href="search" style="margin-left:3em;">Search</a>
+
+<div style="margin-left: 3em;">
+<h1 >Profile page:</h1>
+		<div class="container" style="margin-top:3em;">
 			<label for="">First name: {{  Auth::user()->firstname }}</label> <br>
 			<label for="">Last name: {{  Auth::user()->lastname }}</label> <br>
 			<label for="">Username: {{  Auth::user()->username }}</label> <br>
@@ -20,64 +28,21 @@
 
 
 
+<form method="post" action="{{route('post.submit')}}">
 
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-
-
-  <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Enter your post here:</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('text') ? ' has-error' : '' }}">
-                            <label for="text" class="col-md-4 control-label">Text</label>
-
-                            <div class="col-md-6">
-                                <input id="text" type="text" class="form-control" name="text" value="{{ old('text') }}" required autofocus>
-
-                                @if ($errors->has('text'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('text') }}</strong>
-                                    </span>
-                                    
-                                   
-                            
-                                    @endif
-                            </div>
-                        </div>
-                        
-                        
-                           
-
-                
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send!
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
+	<input style="margin-left: 3.5em;" type="text" name="content" placeholder="Enter your post here:"/>
+	
+  
 	
 	
 	
+	<input type="submit" />
+	
+	
+</form>
+	</div>
 </body>
 
 
