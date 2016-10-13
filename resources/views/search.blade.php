@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 </head>
 <body>
 
@@ -17,16 +18,22 @@
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-	<input style="margin-left: 5em;" type="text" name="content"/>
+	<input style="margin-left: 5em;" type="text" name="content2"/>
 	<input type="submit" value="Search"/>
 	
 	
 </form>
 
 </body>
-@foreach ($users as $user)
+ @foreach ($users as $user)
 <h3>{{$user->firstname}} {{$user->lastname}}</h3>
-@endforeach
+@endforeach 
+
+
+
+
+
+
 </html>
 
 </div>

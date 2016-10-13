@@ -12,13 +12,13 @@ Auth::routes();
 // Auth::routes(); 
 
 Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
-// Auth::routes();
+
 
  Route::post('/post',['as'=>'post.submit','uses'=>'PostController@submit']);
- Route::get('/post/all',['as'=>'post.test_all','uses'=>'PostController@listAll']);
+ Route::get('/wall',['as'=>'post.test_all','uses'=>'PostController@listAll']);
  
  Route::get('/post/{post_id}',['as'=>'post.test','uses'=>'PostController@show']);
-// Auth::routes();
+
  
 
 	Route::get('wall', function () {
@@ -33,7 +33,7 @@ Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
 	
 	
 
-		Route::get('search', function () {
+	 	Route::get('search', function () {
 	 	$users = App\User::all();
 	
 		$data = array (
@@ -42,4 +42,29 @@ Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
 		 
 		return view('search', $data);
 	});
+		 
 		
+		
+		//upload photo
+
+	
+			Route::get('/upload', 'UploadController@uploadForm');
+			Route::post('/upload', 'UploadController@uploadFiles');
+		
+		
+		//new
+		
+			/* 
+			Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
+			Route::get('/search', ['as'=>'search.show','uses'=>'SearchController@show']);
+		
+			 */
+			
+			
+			Route::get('/edit', function () {
+				return view('edit_profile');
+			});
+			
+			
+			
+			
