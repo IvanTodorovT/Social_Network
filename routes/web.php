@@ -43,28 +43,27 @@ Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
 		return view('search', $data);
 	});
 		 
-		
-		
-		//upload photo
-
 	
-			Route::get('/upload', 'UploadController@uploadForm');
-			Route::post('/upload', 'UploadController@uploadFiles');
+/**
+ * Uploading files
+ */
+Route::get('/upload', 'UploadController@uploadForm');
+Route::post('/upload', 'UploadController@uploadFiles');
+
+
+//new
+
+	/* 
+	Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
+	Route::get('/search', ['as'=>'search.show','uses'=>'SearchController@show']);
+
+	 */
+	
+	
+	Route::get('/edit', function () {
+		return view('edit_profile');
+	});
 		
-		
-		//new
-		
-			/* 
-			Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
-			Route::get('/search', ['as'=>'search.show','uses'=>'SearchController@show']);
-		
-			 */
-			
-			
-			Route::get('/edit', function () {
-				return view('edit_profile');
-			});
-			
 			
 			
 			

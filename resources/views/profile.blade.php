@@ -49,7 +49,7 @@
 
 <section id='uploadForm'></section>
 <script>
-	$.get(window.location.pathname + "/upload", function(r){
+	$.get("upload", function(r){
 		$('#uploadForm').html(r);
 	});
 </script>
