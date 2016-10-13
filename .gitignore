@@ -1,4 +1,6 @@
 /node_modules
+public/node_modules
+/resources/uploads
 /public/storage
 /vendor
 /.idea

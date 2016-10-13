@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use function League\Flysystem\get;
 
 class UploadController extends Controller {
 	
@@ -45,38 +46,43 @@ class UploadController extends Controller {
 		file_put_contents($photo, $copy);
 		$this->deleteTmp();
 		
-// 		$album = empty($_POST['album']) ? NULL : $_POST['album'];
-// 		if ($album) { 
-// 			if (!$this->validateAlbumExistance ($album)) {
-// 				return view('UploadForm', ['message'=>'Album does not exist']);
-// 			}
-// 		}  // decided to upload but without an album
+		$album_id = empty($_POST['album']) ? NULL : $_POST['album'];
+		if ($album_id) { 
+			if (!$this->validateAlbumExistance ($album_id)) {
+				return 'Album does not exist';
+			}
+		}
 
 		$text = empty($_POST['text']) ? NULL : $_POST['text'];
 		$tag1 = empty($_POST['tag1']) ? NULL : $_POST['tag1'];
 		$tag2 = empty($_POST['tag2']) ? NULL : $_POST['tag2'];
 		$tag3 = empty($_POST['tag3']) ? NULL : $_POST['tag3'];
-		
-		$id = @\DB::table('posts')->insertGetId([
-				'user_id' => $user_id, 
-				'text' => $text,
-				'photo' => $photo,
-				'tag1' => $tag1,
-				'tag2' => $tag2,
-				'tag3' => $tag3
-		]);
+		try {
+			$id = @\DB::table('posts')->insertGetId([
+					'user_id' => $user_id, 
+					'album_id' => $album_id,
+					'text' => $text,
+					'photo' => $photo,
+					'tag1' => $tag1,
+					'tag2' => $tag2,
+					'tag3' => $tag3
+			]);
+		} catch (\Throwable $e) {
+			return $e->getMessage();
+		}
 		// two ways in laravel
 // 		\DB::insert('INSERT INTO posts (user_id, text, photo, tag1, tag2, tag3) VALUES (?, ?, ?, ?, ?, ?)',
 // 		[$user_id, $text, $photo, $tag1, $tag2, $tag3]);
 
-		$album = empty($_POST['album']) ? NULL : $_POST['album'];
-		if ($album) {
-			$error = $this->addPostToAlbum($album, $id, $user_id);
-			if ($error){
-				return $error;
-			}
-		}
-		
+//		This is the old version with the old tables, delete if this is accepted as final
+// 		$album = empty($_POST['album']) ? NULL : $_POST['album'];
+// 		if ($album) {
+// 			$error = $this->addPostToAlbum($album, $id, $user_id);
+// 			if ($error){
+// 				return $error;
+// 			}
+// 		}
+
 		return 'Upload successful!';
 	}
 	
@@ -85,13 +91,13 @@ class UploadController extends Controller {
 		unlink( $_FILES['file']['tmp_name'] );
 	}
 	
-	private function validateAlbumExistance ($album)
+	private function validateAlbumExistance ($album_id)
 	{
-		
+		return @\DB::table('albums')->where('id', $album_id)->first();
 	}
 	
 	private function addPostToAlbum ($albumName, $postId, $userId)
-	{
+	{ //delete if the new version is accepted as final
 		$cols = ['name', 'user_id', 'created_at'];
 		$array = @(array)\DB::table('albums')->select($cols)->where([
 				['name', $albumName],
