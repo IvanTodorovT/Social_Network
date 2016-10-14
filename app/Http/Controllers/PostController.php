@@ -28,11 +28,13 @@ class PostController extends Controller
     {
 		
     	$post_text = $request->input('content');
+    	$photo_input = $request->input('photo');
     	
     	$post = new Post();
     	$post->user_id = Auth::user()->id;
     	$post->text = $post_text;
-
+    	$post->photo = $photo_input;
+    	
     	$post->save();
     
     	

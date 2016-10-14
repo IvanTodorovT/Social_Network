@@ -20,6 +20,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+<!--     <script type="text/javascript" src="js/addUploadForm.js"></script> -->
 </head>
 <body>
     <div id="app">

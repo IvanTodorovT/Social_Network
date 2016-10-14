@@ -2,7 +2,7 @@
 @section('content')
 
 
-This is how and upload form is added
+This is how an upload form is added
 
 <section id='uploadForm'></section>
 

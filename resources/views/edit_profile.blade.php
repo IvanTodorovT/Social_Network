@@ -4,27 +4,39 @@
 
 @section('content')
 
-echo "baba";
 
-<form method="post" action="{{route('post.submit')}}">
+<a href="wall" style="margin-left:40em;">Wall</a>
+<a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
+<a href="profile" style="margin-left:3em;">Profile</a>
+<a href="search" style="margin-left:3em;">Search</a>
+
+<div style="margin-left: 3em;">
+<h1 >Edit profile page:</h1>
+
+<form method="post" action="{{route('edit.submit')}}">
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-<input style="margin-left: 3.5em;" type="text" name="content" placeholder="Enter your post here:"/>
+	<input style="margin-left: 3.5em;" type="text" name="new_firstname" placeholder="New firstname:"/><br><br>
+	<input style="margin-left: 3.5em;" type="text" name="new_lastname" placeholder="New lastname:"/><br><br>
+	<input style="margin-left: 3.5em;" type="text" name="new_username" placeholder="New username:"/><br><br>
+	
+  
+	
+	<input type="submit" value= "Change" />
+	
+	
+	
+</form>
+
+
+
+<br>
+
+<a href="upload2" style="margin-left:3em;">Change profile picture</a>
 
 
 
 
-
-<input type="submit" />
-
-<?php 
-
-$content = "Novo_ime_babata";
-
-DB::table('users2')
-->where('id', 9)
-->update(array('firstname' => $content));
-
-?>
+</div>
 @endsection

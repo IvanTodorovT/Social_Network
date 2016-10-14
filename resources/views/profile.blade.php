@@ -7,16 +7,25 @@
 
 </head>
 <body>
+<?php 
 
+$string = Auth::user()->photo;
+$output = explode("\\",$string);
+
+
+
+?>
 
 <a href="wall" style="margin-left:40em;">Wall</a>
 <a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
-<a href="#" style="margin-left:3em;">Edit</a>
+<a href="edit" style="margin-left:3em;">Edit</a>
+<a href="upload" style="margin-left:3em;">Upload photo</a>
 <a href="search" style="margin-left:3em;">Search</a>
 
 <div style="margin-left: 3em;">
 <h1 >Profile page:</h1>
 		<div class="container" style="margin-top:3em;">
+		<img style="width:150px; height:150px;" src="..\resources\uploads\<?= $output[count($output)-1]?>" alt="no pic" /><br>
 			<label for="">First name: {{  Auth::user()->firstname }}</label> <br>
 			<label for="">Last name: {{  Auth::user()->lastname }}</label> <br>
 			<label for="">Username: {{  Auth::user()->username }}</label> <br>
@@ -32,135 +41,20 @@
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-	<input style="margin-left: 3.5em;" type="text" name="content" placeholder="Enter your post here:"/>
-	
+	<input style="margin-left: 3.5em;" type="text" name="content" placeholder="Enter your post here:"/><br><br>
+	<!-- <input  style="margin-left: 3.5em;" id='file' type="file" name="photo"><br><br>-->
   
-	
-	<input type="submit" />
-	
-	
+	<input style="margin-left: 3.5em;" type="submit" />
 	
 </form>
-
-
 
 <div id='msg' style="margin-top:3em;"></div>
-<form method='post' enctype="multipart/form-data">
+
 
 <section id='uploadForm'></section>
-<script>
-	$.get("upload", function(r){
-		$('#uploadForm').html(r);
-	});
-</script>
 
 
-<!-- <form action='upload' method="post" enctype="multipart/form-data"> -->
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
-   
-   	<div>
-   		<label for='file'>Upload:</label>
-   		<input style='display: inline-block' id='file' type="file" name="file">
-   	</div>
-		<div>
-	        <textarea rows="5" cols="50" name='text' placeholder='What do you think?'></textarea>
-		</div>
-	<div>
-		<p> Would you like to select tags for your photo? </p>
-		<select id='tag1' name='tag1'>
-	       	<option value='NULL'>---</option>
-	       	<option value='landscape'>Landscape</option>
-	       	<option value='portrait'>Portrait</option>
-	       	<option value='animals'>Animals</option>
-	       	<option value='food'>Food</option>
-	       	<option value='sci-fi'>Sci-Fi</option>
-	       	<option value='fantasy'>Fantasy</option>
-	       	<option value='cars'>Cars</option>
-	       </select>
-		<select name='tag2'>
-	       	<option value='NULL'>---</option>
-	       	<option value='landscape'>Landscape</option>
-	       	<option value='portrait'>Portrait</option>
-	       	<option value='animals'>Animals</option>
-	       	<option value='food'>Food</option>
-	       	<option value='sci-fi'>Sci-Fi</option>
-	       	<option value='fantasy'>Fantasy</option>
-	       	<option value='cars'>Cars</option>
-	       </select>
-		<select name='tag3'>
-	       	<option value='NULL'>---</option>
-	       	<option value='landscape'>Landscape</option>
-	       	<option value='portrait'>Portrait</option>
-	       	<option value='animals'>Animals</option>
-	       	<option value='food'>Food</option>
-	       	<option value='sci-fi'>Sci-Fi</option>
-	       	<option value='fantasy'>Fantasy</option>
-	       	<option value='cars'>Cars</option>
-		</select>
-	</div>
-	<input type="submit">
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-</form>
-
-<script>
-$(function (){
-	$("form").submit(function(e) {
-
-	    var formData = new FormData($(this)[0]);
-
-	    $.ajax({
-	        url: window.location.pathname + "/upload",
-	        type: 'POST',
-	        data: formData,
-	        async: true,
-	        success: function (data) {
-	            if (data){
-					$("#msg").html("<h3>" + data + "</h3><hr>");
-	            }
-	        },
-	        cache: false,
-	        contentType: false,
-	        processData: false
-	    });
-	    
-	    e.preventDefault();
-	});
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</div>
-	
-
-	
-	
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/javascript" src="js/addUploadForm.js"></script>
 
 @endsection

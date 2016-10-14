@@ -1,4 +1,4 @@
-<div id='msg'></div>
+<div id='up-frm-msg'></div>
 <form method='post' enctype="multipart/form-data">
 <!-- <form action='upload' method="post" enctype="multipart/form-data"> -->
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -53,13 +53,13 @@ $(function (){
 	    var formData = new FormData($(this)[0]);
 
 	    $.ajax({
-	        url: window.location.pathname + "/upload",
+	        url: "upload",
 	        type: 'POST',
 	        data: formData,
 	        async: true,
 	        success: function (data) {
 	            if (data){
-					$("#msg").html("<h3>" + data + "</h3><hr>");
+					$("#up-frm-msg").html("<h3>" + data + "</h3><hr>");
 	            }
 	        },
 	        cache: false,

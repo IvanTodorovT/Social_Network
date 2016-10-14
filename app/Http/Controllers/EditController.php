@@ -15,57 +15,54 @@ class EditController extends Controller
 {
   
     
-
-   
-    public function __construct()
-    {
-    	//@TODO
-//         $this->middleware('guest');
-    }
-
-    
-     public function submit(Request $request)
-    {
+	public function submit(Request $request)
+	{
+	
 		
-    	//$edit = $request->input('content');
-    	
-    	
-    	
-    	
-    	$edit = 'Test';
-    	
-    	DB::table('users2')
-    	->where('id', 3)
-    	->update(array('username' => $edit));
-    
-    	
-    	
-    	
-    	
-    	
-    	
-//     	DB::insert('insert into posts (user_id,text) values (?,?)', array(Auth::user()->id , $post_text));
-    	
-    	return Redirect::route('edit.show');
-    }  
-    
-    public function show(Request $request,$post_id){
-    	
-    	//$post = Post::find($post_id);
-    	//var_dump($post);
-    }
-    
-    public function listAll(Request $request){
-    
-    	//$posts = Post::where('status',1)->get();
-    	
-    	//$posts = Post::all();
-    	//var_dump($posts);
-    	//echo $posts->pluck('text');
-    }
+		 
+	 $new_firstname = $request->input('new_firstname');
+	 $new_lastname = $request->input('new_lastname');
+	 $new_username = $request->input('new_username');
 
-
-    
+	 
+	 
+	 if (empty ( $_POST ['new_firstname'] ) ) {
+	 
+	 	$new_firstname = Auth::user()->firstname;
+	 
+	 }
+	 
+	 if (empty ( $_POST ['new_lastname'] ) ) {
+	 
+	 	$new_lastname = Auth::user()->lastname;
+	 
+	 }
+	 
+	 if (empty ( $_POST ['new_username'] ) ) {
+	 
+	 	$new_username = Auth::user()->username;
+	 
+	 }
+	 
+	 
+	 
+	 
+DB::table('users2')
+->where('id', Auth::user()->id)
+->update(array('firstname' => $new_firstname,'lastname' => $new_lastname,'username' => $new_username));
+	
+		//$post->save();
+	
+		 
+		//     	DB::insert('insert into posts (user_id,text) values (?,?)', array(Auth::user()->id , $post_text));
+		 
+		return Redirect::route('profile.show');
+	}
+	
+	public function show(){
+		 
+		
+	}
     
     
 }
