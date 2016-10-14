@@ -30,3 +30,12 @@ CREATE TABLE `albums` (
  KEY `user_id` (`user_id`),
  CONSTRAINT `albums_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )
+
+CREATE TABLE `post_status` (
+ `id` int(6) NOT NULL AUTO_INCREMENT,
+ `post_id` int(6) NOT NULL,
+ `user_id` int(6) NOT NULL,
+ `status` varchar(10) DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `id_UNIQUE` (`id`)
+)
