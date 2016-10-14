@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Input;
-
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,7 +53,12 @@ Route::get('/upload', 'UploadController@uploadForm');
 Route::post('/upload', 'UploadController@uploadFiles');		
 
 
+// Route::get('/like', 'LikeController@getButtons'); //replaced with JQ
 Route::get('/like', 'LikeController@like');
+
+Route::get('/howTo', function () {
+	return view('howTo');
+});
 		
 			
 Route::get('/edit', function () {

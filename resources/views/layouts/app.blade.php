@@ -12,9 +12,11 @@
 
     <!-- Styles -->
     <link href="css/app.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.css">
 
     <!-- Scripts -->
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="js/addLikes.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

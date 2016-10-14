@@ -6,20 +6,20 @@ use App\Likes;
 
 class LikeController extends Controller
 {
-	/**
-	 * for this to work i need: 
-	 * type - post/album....
-	 * status - like/dislike...
-	 */
+// 	public function getButtons()
+// 	{
+// 		return view('Modules.likeButtons');
+// 	}
+	
     public function like()
     {
-//     	$userId = Auth::id();
-//     	if(!$userId){
-//     		return 'You are not logged in';
-//     	}
-    	$table = 'post';//empty($_POST['table']) ? NULL : $_POST['table'];
-    	$status = 'dislike';//empty($_POST['status']) ? NULL : $_POST['status'];
-    	$refId = 1;//empty($_POST['refId']) ? NULL : $_POST['refId'];
+    	$userId = \Auth::id();
+    	if(!$userId){
+    		return 'You are not logged in';
+    	}
+    	$table = empty($_GET['table']) ? NULL : $_GET['table'];
+    	$status = empty($_GET['status']) ? NULL : $_GET['status'];
+    	$refId = empty($_GET['refId']) ? NULL : $_GET['refId'];
  		
     	if(!$table || !$refId) { return 'Nothing to like';}
     	$statuses = ['like', 'dislike'];   	
@@ -31,10 +31,10 @@ class LikeController extends Controller
     	
     	$existant = Likes::checkStatus($tableName, $refName, $refId);
     	$err = '';
-    	if ($existant == $status){
-    		$status = 'deleted';
-    	} 
     	if ($existant){
+    		if ($existant == $status){
+	    		$status = 'deleted';
+	    	} 
     		$err = Likes::update($tableName, $refName, $refId, $status);
     	} else {
     		$err = Likes::insert($tableName, $refName, $refId, $status);

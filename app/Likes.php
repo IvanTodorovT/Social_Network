@@ -14,14 +14,14 @@ class Likes
 		return @\DB::table($tableName)->where([
 				[$refName, $refId],
 				['user_id', $userId]
-		])->pluck('status');
+		])->pluck('status')->first();
 	}
 	
 	public static function insert ($tableName, $refName, $refId, $status)
 	{
 		$userId = Auth::id();
 		if (!$userId){return 'error';}
-		\DB::insert('INSERT INTO ' . $tableName . ' (' . $refName . 'user_id, status)
+		@\DB::insert('INSERT INTO ' . $tableName . ' (' . $refName . ', user_id, status)
 				VALUES (?, ?, ?)', [$refId, $userId, $status]);
 	}
 	
@@ -29,7 +29,7 @@ class Likes
 	{
 		$userId = Auth::id();
 		if (!$userId){return 'error';}
-		\DB::table($tableName)->where([
+		@\DB::table($tableName)->where([
 				[$refName, $refId],
 				['user_id', $userId]
 		])->update(['status' => $status]);
