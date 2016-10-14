@@ -9,7 +9,7 @@ class UploadController extends Controller {
 	
 	public function uploadForm()
 	{
-		return view('uploadForm');
+		return view('Modules.uploadForm');
 	}
 	
 	public function uploadFiles()
@@ -62,7 +62,7 @@ class UploadController extends Controller {
 					'user_id' => $user_id, 
 					'album_id' => $album_id,
 					'text' => $text,
-					'photo' => $photo,
+					'photo' => $fileName,
 					'tag1' => $tag1,
 					'tag2' => $tag2,
 					'tag3' => $tag3

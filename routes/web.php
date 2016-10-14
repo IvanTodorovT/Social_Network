@@ -5,7 +5,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 
- Route::get('/home', 'HomeController@profile');
+Route::get('/home', 'HomeController@profile');
 // Auth::routes(); 
 
 Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
@@ -43,10 +43,13 @@ Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
 	
 /**
  * Uploading files
+ * include /upload to the url or make a GET request to get an upload Form
+ * image upload is always post / the form handles it fine
  */
 Route::get('/upload', 'UploadController@uploadForm');
 Route::post('/upload', 'UploadController@uploadFiles');
 
+Route::get('/like', 'LikeController@like');
 
 //new
 
