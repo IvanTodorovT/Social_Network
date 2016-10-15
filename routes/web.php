@@ -55,9 +55,25 @@ Route::post('/upload', 'UploadController@uploadFiles');
 Route::get('/upload2', 'UploadProfileController@uploadForm');
 Route::post('/upload2', 'UploadProfileController@uploadFiles');
 
+/**
+ * Liking
+ * Just add a tag with class='likeButtons' and JQ does the rest.
+ * check the howTo or addLikes.js for info on params
+ * to add more like options aside to like/dislike edit the $statuses array in LikeController
+ * any value is accepted for $table resulting in an uncaught exception for invalid value 
+ * - can't happen unless someone tries to do stupid stuff with the DB
+ */
 // Route::get('/like', 'LikeController@getButtons'); //replaced with JQ
 Route::get('/like', 'LikeController@like');
 
+/**
+ * Commenting
+ */
+Route::get('comments/{table}/{id}', 'CommentsController@getComments');
+
+/**
+ * This route has to be deleted at some point. Used for testing purposes
+ */
 Route::get('/howTo', function () {
 	return view('howTo');
 });
@@ -74,11 +90,3 @@ Route::get('/edit', function () {
 	
 	Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
 	Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
-	
-	
-
-			
-	
-	
-			
-			

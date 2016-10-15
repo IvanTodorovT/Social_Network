@@ -7,9 +7,9 @@ $(function (){
 	$('body').append('<div id="likeButtonsPopUp">POP</div>')
 
 	$('.likeButtons').append(
-			'<i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
+			'<i class="fa fa-comment" aria-hidden="true"></i>' +
 			'<i class="fa fa-thumbs-down" aria-hidden="true"></i>' +
-			'<i class="fa fa-comment" aria-hidden="true"></i>'
+			'<i class="fa fa-thumbs-up" aria-hidden="true"></i>'
 	);
 	
 	$('.likeButtons:parent').css({"overflow": "auto"});
