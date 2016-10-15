@@ -64,6 +64,7 @@ function follow(user_id){
 		    }
 	    }
 	}
+	
 	http.send(params);
 }
 </script>

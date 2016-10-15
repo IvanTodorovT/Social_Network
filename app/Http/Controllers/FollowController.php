@@ -10,7 +10,9 @@ class FollowController extends Controller {
 		$data = ['error'=>[]];
 		$user_id = Input::get('user_id');
 		try{
-			//insert 
+			DB::table('users_friends')->insert(
+					array('user_id' => Auth::user()->id, 'friend_id' => $user_id)
+					);
 		}catch(Exception $e){
 			$data['error'] = 'erorr following asda.sd..';
 		}

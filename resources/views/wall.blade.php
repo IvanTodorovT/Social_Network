@@ -19,13 +19,6 @@ use App\Post;
 
 	<?php
 
-	
-	
-	$posts = Post::where('user_id', '>', 3)->get();;
-	
-	
-	
-
 	/* $posts = DB::table('posts')
 	->join('users', function($join)
 	{
@@ -37,36 +30,28 @@ use App\Post;
 	->get(); */
 	
 
-	
-/* 	
-$posts = DB::select('SELECT u.firstname,u.lastname,p.text,p.created_at FROM posts as p JOIN users as u ON u.id = p.user_id WHERE p.user_id IN (SELECT friend_id FROM users_friends WHERE user_id = ?) ORDER BY p.created_at DESC'
-		,array(3)); */
-	
 
-
-/* 	$posts1 = DB::select('SELECT friend_id FROM users_friends WHERE user_id = 3');
- $posts2 = DB::select('SELECT firstname FROM posts JOIN users  ON users.id = posts.user_id WHERE posts.user_id = 3');
- var_dump($posts2); */
+$posts = DB::select('SELECT users2.firstname, users2.lastname,users2.photo as user_pic,posts.photo as post_photo, posts.text , posts.created_at from posts JOIN users2 on users2.id = posts.user_id where posts.user_id IN (SELECT friend_id from users_friends where user_id = ?) ORDER BY posts.created_at DESC', array(Auth::user()->id));
 	
 	
 	foreach ( $posts as $post ) :
-	$post->first();
+	
 
-	
-	$string = $post->photo;
-	$output = explode("\\",$string);
-
+	$post_photo = $post->post_photo;
+	$output_post = explode("\\",$post_photo);
 	
 	
+	$user_pic = $post->user_pic;
+	$output_prof = explode("\\",$user_pic)
 	?>
 	
-	
-	<hr style = 'border: 1px solid black' />
-	
-   <p><?php echo 'User with id:'.$post->user_id .' says:'.$post->text; ?></p>
-   <img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output[count($output)-1]?>" alt="no pic" />
-  	
-  		<br />
+<hr style = 'border: 1px solid black' />
+
+<img style="width:50px; height:50px;" src="..\resources\uploads\<?= $output_prof[count($output_prof)-1]?>" alt="no pic" />
+
+<?= $post->firstname .' '. $post->lastname . ' say: '. $post->text;?>
+
+<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
 <?php endforeach;?>
 
 </div>
