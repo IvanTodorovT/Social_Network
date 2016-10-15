@@ -15,50 +15,38 @@ use App\Post;
 	
 	<h1>Wall page<h1>
 	
-
-	<img src="C:\xampp\htdocs\ittalents\Final\social_lara\Final3\resources\uploads\4032test.jpg" alt="nee" />
 			</body>
 
-		<!-- 	@foreach ($posts as $post)
-			<h3>User with id: {{$post->user_id}} say: {{$post->text}}</h3>
-			@endforeach -->
-			
-		
-		
-		
-	
-		
-		
 	<?php
 
 	
 	
+	$posts = Post::where('user_id', '>', 3)->get();;
 	
 	
 	
-	
-	
-	
-	$posts = Post::where('user_id',3)->get();;
-/* 	
-	$posts = DB::table('posts')
-	->where('user_id', '=', 3)->get(); */
-	
-	
-/* 	
-	DB::table('posts')
+
+	/* $posts = DB::table('posts')
 	->join('users', function($join)
 	{
-		$join->on('{{Auth:user()->id}}', '=', 'posts.user_id'),
-		
-		whereIn(DB::table('users_friends')>pluck('friend_id')
-		->where('user_id' '=' '{{Auth::user()->id}}')),
-		
-		->orderBy('created_at', 'status'),
+		$join->on('{{Auth:user()->id}}', '=', 'posts.user_id')
+		->whereIn(DB::table('users_friends')->pluck('friend_id')
+				->where('user_id', '=' ,'{{Auth::user()->id}}'))
+				->orderBy('created_at')
 	})
-	->get();
-	 */
+	->get(); */
 	
+
+	
+/* 	
+$posts = DB::select('SELECT u.firstname,u.lastname,p.text,p.created_at FROM posts as p JOIN users as u ON u.id = p.user_id WHERE p.user_id IN (SELECT friend_id FROM users_friends WHERE user_id = ?) ORDER BY p.created_at DESC'
+		,array(3)); */
+	
+
+
+/* 	$posts1 = DB::select('SELECT friend_id FROM users_friends WHERE user_id = 3');
+ $posts2 = DB::select('SELECT firstname FROM posts JOIN users  ON users.id = posts.user_id WHERE posts.user_id = 3');
+ var_dump($posts2); */
 	
 	
 	foreach ( $posts as $post ) :
@@ -68,7 +56,7 @@ use App\Post;
 	$string = $post->photo;
 	$output = explode("\\",$string);
 
-
+	
 	
 	?>
 	
@@ -78,12 +66,8 @@ use App\Post;
    <p><?php echo 'User with id:'.$post->user_id .' says:'.$post->text; ?></p>
    <img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output[count($output)-1]?>" alt="no pic" />
   	
-  	
-			<br />
+  		<br />
 <?php endforeach;?>
-
-
-	
 
 </div>
 

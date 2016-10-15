@@ -50,8 +50,10 @@ Route::post('/follow}',['as'=>'user.follow','uses'=>'FollowController@follow']);
  * image upload is always post / the form handles it fine
  */
 Route::get('/upload', 'UploadController@uploadForm');
-Route::post('/upload', 'UploadController@uploadFiles');		
+Route::post('/upload', 'UploadController@uploadFiles');	
 
+Route::get('/upload2', 'UploadProfileController@uploadForm');
+Route::post('/upload2', 'UploadProfileController@uploadFiles');
 
 // Route::get('/like', 'LikeController@getButtons'); //replaced with JQ
 Route::get('/like', 'LikeController@like');
