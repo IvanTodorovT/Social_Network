@@ -12,6 +12,8 @@
 }
 
 #likeButtonsPopUp{
+	font-size: 2.1em;
+	font-weight: bold;
 	display: none;
 	position: absolute;
 	border: 1px solid black;

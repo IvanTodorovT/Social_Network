@@ -33,14 +33,14 @@ class LikeController extends Controller
     	$err = '';
     	if ($existant){
     		if ($existant == $status){
-	    		$status = 'deleted';
+	    		$status = 'delete'; //just a placeholder
 	    	} 
     		$err = Likes::update($tableName, $refName, $refId, $status);
     	} else {
     		$err = Likes::insert($tableName, $refName, $refId, $status);
     	}
     	
-    	return $err ? $err : 'Thank you for your contribution';
+    	return $err ? $err : $status . 'd';
     }
 
 }

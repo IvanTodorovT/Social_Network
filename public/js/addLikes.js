@@ -24,18 +24,29 @@ $(function (){
 		}
 		
 		//function getTable()
-		var table = 'post';
+		var classes = $(e.target).parent().parent().attr("class");
+		var table = '';
+		if (classes.match('album')) {
+			table = 'album';
+		} else if (classes.match('post')) {
+			table = 'post';
+		} else if (classes.match('comment')) {
+			table = 'comment';
+		}
 		
 		//function getId()
-		var id = 24;
+		var id = parseInt($(e.target).parent().parent().attr("id"));
 		
+		if (!table || !id || !status){
+			console.log ('Bugsplash! \n table = ' + table + '\n id = ' + id + '\n status = ' + status);
+		}
 		var post = $.get("like", {table: table, refId: id, status: status})
 		.done(function(data){
 			$('#likeButtonsPopUp').html(data);
 			$('#likeButtonsPopUp').css({'display': 'inline-block',
 				'left': e.pageX, 'top': e.pageY
 			});
-		    $("#likeButtonsPopUp").fadeOut("slow");
+		    $("#likeButtonsPopUp").fadeOut(2500);
 		})
 		.fail(function(err){
 			console.log(err)
