@@ -26,6 +26,11 @@ class SearchController extends Controller
 	   	->orWhere('lastname', 'like', '%'.$findme.'%')
 	   	->orWhere('username', 'like', '%'.$findme.'%')
 	   	->get();
+	   	
+	   	$followers_ids = DB::table('users_friends')
+	   	->distinct('friend_id')
+	   	->where('user_id',Auth::user()->id)
+	   	->pluck('friend_id')->toArray();
 	 
 	    $data = [];
 	    $data['users'] = [];
@@ -39,7 +44,7 @@ class SearchController extends Controller
 	  
 	   	
 // 	   dd($data);
-	   	
+	   	$data['followers_ids'] = $followers_ids;
 	 	return View::make("search",$data);
 
     }  
