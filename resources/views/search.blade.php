@@ -25,7 +25,8 @@ use Symfony\Component\VarDumper\VarDumper;
 @foreach($users as $u)
 <div>
 
-<!-- <form method="POST" action="{{route('user.follow',$u->id)}}">
+<!-- <form method="POST" action="{{route('user.follow')}}">
+<input type="hidden" value="{{$u->id}}" name="user_id"/>
 {{$u->firstname}}
 <input type="submit" value="follow">
 </form> -->
@@ -33,14 +34,19 @@ use Symfony\Component\VarDumper\VarDumper;
 
 
 {{$u->firstname}}
-<button onclick="follow({{$u->id}})">Follow</button>
+
+@if(in_array($u->id,$followers_ids))
+<button onclick="unfollow(this,{{$u->id}})">Unfollow</button>
+@else
+<button onclick="follow(this,{{$u->id}})">Follow</button>
+@endif
 </div>
 @endforeach
 @endif
 
 </div>
 <script type="text/javascript">
-function follow(user_id){
+function follow(el,user_id){
 
 	var http = new XMLHttpRequest();
 	
@@ -59,8 +65,35 @@ function follow(user_id){
 		    if(response.error != ""){
 			    alert("Error with following user");
 		    }else{
-			   
-			    alert("Success");
+			    el.innerHTML = "Unfollow";
+			    el.setAttribute("onclick","unfollow(this,"+user_id+")");
+		    }
+	    }
+	}
+	
+	http.send(params);
+}
+
+function unfollow(el,user_id){
+	var http = new XMLHttpRequest();
+	
+	var url = '{{route('user.unfollow')}}';
+	
+	var params = "_token={{csrf_token()}}&user_id="+user_id;
+	http.open("POST", url, true);
+
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	http.onreadystatechange = function() {//Call a function when the state changes.
+	    if(http.readyState == 4 && http.status == 200) {
+		   
+		    response = JSON.parse(http.responseText)
+		    if(response.error != ""){
+			    alert("Error with unfollowing user");
+		    }else{
+			    el.innerHTML = "Follow";
+			    el.setAttribute("onclick","follow(this,"+user_id+")");
 		    }
 	    }
 	}

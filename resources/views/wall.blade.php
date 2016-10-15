@@ -31,7 +31,7 @@ use App\Post;
 	
 
 
-$posts = DB::select('SELECT users2.firstname, users2.lastname,users2.photo as user_pic,posts.photo as post_photo, posts.text , posts.created_at from posts JOIN users2 on users2.id = posts.user_id where posts.user_id IN (SELECT friend_id from users_friends where user_id = ?) ORDER BY posts.created_at DESC', array(Auth::user()->id));
+$posts = DB::select('SELECT users2.firstname, users2.lastname,users2.photo as user_pic,posts.photo as post_photo, posts.text , posts.created_at, posts.id from posts JOIN users2 on users2.id = posts.user_id where posts.user_id IN (SELECT friend_id from users_friends where user_id = ?) ORDER BY posts.created_at DESC', array(Auth::user()->id));
 	
 	
 	foreach ( $posts as $post ) :
@@ -47,7 +47,7 @@ $posts = DB::select('SELECT users2.firstname, users2.lastname,users2.photo as us
 
 <!-- 	I added an inline style here! Remove it if you write css -->
 <!-- 	PS: You get Invalid tag location warning! -->
-	<div class="post" id=<?= $post->id; ?> style="width: 50%;"> 	
+	<div class="post" id=<?= $post->id; ?> style="width: 60%;"> 	
 		<hr style = 'border: 1px solid black' />
 		
 		<img style="width:50px; height:50px;" src="..\resources\uploads\<?= $output_prof[count($output_prof)-1]?>" alt="no pic" />
@@ -56,6 +56,7 @@ $posts = DB::select('SELECT users2.firstname, users2.lastname,users2.photo as us
 		
 		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
 		<div class='likeButtons'></div>
+		
 	</div>
 <?php endforeach;?>
 

@@ -3,6 +3,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Auth::routes();
 
  Route::get('/home', 'HomeController@profile');
@@ -11,6 +12,7 @@ Auth::routes();
 Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
  
 Route::post('/follow}',['as'=>'user.follow','uses'=>'FollowController@follow']);
+Route::post('/unfollow',['as'=>'user.unfollow','uses'=>'FollowController@unfollow']);
 
  Route::post('/post',['as'=>'post.submit','uses'=>'PostController@submit']);
  
