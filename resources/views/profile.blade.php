@@ -9,7 +9,7 @@
 <body>
 <?php 
 
-$string = Auth::user()->photo;
+$string = Auth::user()->profile_pic;
 $output = explode("\\",$string);
 
 

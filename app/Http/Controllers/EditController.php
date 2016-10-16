@@ -48,7 +48,7 @@ class EditController extends Controller
 	 
 	 if (empty ( $_POST ['new_description'] ) ) {
 	 
-	 	$new_username = Auth::user()->username;
+	 	$new_username = Auth::user()->description;
 	 
 	 }
 	 

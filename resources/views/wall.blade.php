@@ -28,7 +28,7 @@ use App\Post;
 	$output_post = explode("\\",$post_photo);
 	
 	
-	$user_pic = $post->author->photo;
+	$user_pic = $post->author->profile_pic;
 	$output_prof = explode("\\",$user_pic)
 	?>
 
