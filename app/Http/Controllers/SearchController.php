@@ -22,29 +22,11 @@ class SearchController extends Controller
     {
 	
 	    $findme = $request->input('content3');
-	   	$users = User::where('firstname', 'like', '%'.$findme.'%')
-	   	->orWhere('lastname', 'like', '%'.$findme.'%')
-	   	->orWhere('username', 'like', '%'.$findme.'%')
-	   	->get();
-	   	
-	   	$followers_ids = DB::table('users_friends')
-	   	->distinct('friend_id')
-	   	->where('user_id',Auth::user()->id)
-	   	->pluck('friend_id')->toArray();
+	    $users = User::getMatched($findme);
 	 
 	    $data = [];
-	    $data['users'] = [];
-	   	foreach ($users as $user){
-	//    		echo "Firstname:". $user->firstname,'<br />';
-	//    		echo "Lastname:".$user->lastname, '<br />';
-	//    		echo "-----------------------", '<br />';
-	   		$data['users'][] = $user;
-	   	}
-	
-	  
-	   	
-// 	   dd($data);
-	   	$data['followers_ids'] = $followers_ids;
+	    $data['users'] = $users;
+	   	$data['followers_ids'] = Auth::user()->getFollowersIds();
 	 	return View::make("search",$data);
 
     }  
