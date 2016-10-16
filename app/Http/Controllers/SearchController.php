@@ -20,7 +20,6 @@ class SearchController extends Controller
     
    public function submit(Request $request)
     {
-	
 	    $findme = $request->input('content3');
 	    $users = User::getMatched($findme);
 	 
@@ -28,18 +27,22 @@ class SearchController extends Controller
 	    $data['users'] = $users;
 	   	$data['followers_ids'] = Auth::user()->getFollowersIds();
 	 	return View::make("search",$data);
-
     }  
-    
-    
-    
     
     public function show(){
     	return view('search');
-   
     }
 
+    public function searchPostForm()
+    {
+    	return view('searchTag');
+    }
     
-    
-    
+    public function getSearchByTagResults()
+    {
+	    if(count($_GET['tags']) > 6){
+	    	return 'Are you hacking me? As if 6 tags were not enough';
+	    }
+	    return var_dump(Auth::user()->getFollowersIds());
+    }
 }

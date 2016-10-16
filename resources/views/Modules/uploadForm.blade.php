@@ -1,11 +1,7 @@
 <?php
 use App\Tags;
 
-$tags = Tags::getTags();
-$options = '<option value=\'NULL\'>---</option>';
-foreach ($tags as $no => $tag){
-	$options .= '<option value=\'' . ($no + 1) . "'>" . $tag . '</option>';
-}
+$options = Tags::getDropDownOptions();
 ?>
 
 <div id='up-frm-msg'></div>

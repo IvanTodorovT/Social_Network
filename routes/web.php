@@ -84,9 +84,14 @@ Route::get('/edit', function () {
 });
 	
  
-	Route::post('/edit',['as'=>'edit.submit','uses'=>'EditController@submit']);
-	Route::get('/edit/{edit_id}',['as'=>'edit.test','uses'=>'EditController@show']);
-	
-	
-	Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
-	Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
+Route::post('/edit',['as'=>'edit.submit','uses'=>'EditController@submit']);
+Route::get('/edit/{edit_id}',['as'=>'edit.test','uses'=>'EditController@show']);
+
+/**
+ * SearchController is originally used for finding users,
+ * but since it has such a general name I decided to use it for photo searches as well
+ */
+Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
+Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
+Route::get('/searchPosts', 'SearchController@searchPostForm');
+Route::get('/searchByTag', 'SearchController@getSearchByTagResults');
