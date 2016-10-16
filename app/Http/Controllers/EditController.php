@@ -23,6 +23,7 @@ class EditController extends Controller
 	 $new_firstname = $request->input('new_firstname');
 	 $new_lastname = $request->input('new_lastname');
 	 $new_username = $request->input('new_username');
+	 $new_description = $request->input('description');
 
 	 
 	 
@@ -45,11 +46,15 @@ class EditController extends Controller
 	 }
 	 
 	 
+	 if (empty ( $_POST ['new_description'] ) ) {
 	 
+	 	$new_username = Auth::user()->username;
+	 
+	 }
 	 
 DB::table('users2')
 ->where('id', Auth::user()->id)
-->update(array('firstname' => $new_firstname,'lastname' => $new_lastname,'username' => $new_username));
+->update(array('firstname' => $new_firstname,'lastname' => $new_lastname,'username' => $new_username,'description' => $new_description));
 	
 		//$post->save();
 	
