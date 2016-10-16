@@ -2,9 +2,7 @@
 
 namespace App;
 
-use function League\Flysystem\update;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\TryCatch;
 
 class Comments
 {
@@ -12,7 +10,7 @@ class Comments
 	// refName = post_id
 	public static function getComments($table, $tableName, $refName, $refId)
 	{
-		if (!self::canDo()){
+		if (!self::canDo($table, $refName, $refId)){
 			return 'You are not allowed to comment this';
 		}
 		return @\DB::table($tableName)
@@ -23,15 +21,18 @@ class Comments
 					->orderBy($tableName . '.created_at', 'desc')->get();
 	}
 	
-	public static function canDo()
-	{
-		\DB::table()
-		return true; //validation required
+	public static function canDo($table, $refName, $refId)
+	{// damned tablenames!
+		$poster = \DB::table($table . 's')
+				->select('user_id')
+				->where('id', $refId)->first();
+		$poster = (array)$poster;  //one hell of a workaround!
+		return in_array(reset($poster), Auth::user()->getFollowersIds());
 	}
 	
 	public static function storeComment ($table, $tableName, $refName, $refId, $text)
 	{
-		if (!self::canDo()){
+		if (!self::canDo($table, $refName, $refId)){
 			return null; //null is not ok
 		}
 		$userId = Auth::id();
