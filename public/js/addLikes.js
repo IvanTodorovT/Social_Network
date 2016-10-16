@@ -4,27 +4,26 @@
  */
 
 $(function (){
-	$('body').append('<div id="likeButtonsPopUp">POP</div>')
+	$('body:not(:has("#likeButtonsPopUp"))').append('<div id="likeButtonsPopUp">POP</div>')
 
-	$('.likeButtons').append(
-			'<i class="fa fa-comment" aria-hidden="true"></i>' +
-			'<i class="fa fa-thumbs-down" aria-hidden="true"></i>' +
-			'<i class="fa fa-thumbs-up" aria-hidden="true"></i>'
-	);
-	
-	$('.likeButtons:parent').css({"overflow": "auto"});
-
-	$('.likeButtons i').on('click', function(e){
-		//function getStatus()
-		var status = '';
-		if ($(e.target).hasClass('fa-thumbs-up')){
-			status = 'like';
-		} else if ($(e.target).hasClass('fa-thumbs-down')) {
-			status = 'dislike';
+	var likeButtonsDestinations = $(".likeButtons:not(:has(i))");
+	likeButtonsDestinations.each(function(){
+		if($(this).parent().hasClass('album') || $(this).parent().hasClass('post')) {
+			$(this).append('<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>');
 		}
-		
+		$(this).append(
+				'<i style="color: red;" class="fa fa-thumbs-down" aria-hidden="true"></i>' +
+				'<i style="color: green;" class="fa fa-thumbs-up" aria-hidden="true"></i>'
+		);	
+	});
+	
+	
+	likeButtonsDestinations.parent().css({"overflow": "auto"});
+
+	likeButtonsDestinations.find('i').on('click', function(e){
+		var target = $(e.target);
 		//function getTable()
-		var classes = $(e.target).parent().parent().attr("class");
+		var classes = target.parent().parent().attr("class");
 		var table = '';
 		if (classes.match('album')) {
 			table = 'album';
@@ -35,12 +34,35 @@ $(function (){
 		}
 		
 		//function getId()
-		var id = parseInt($(e.target).parent().parent().attr("id"));
+		var id = parseInt(target.parent().parent().attr("id"));
+
+		//function getStatus()
+		var status = '';
+		if (target.hasClass('fa-thumbs-up')){
+			status = 'like';
+		} else if (target.hasClass('fa-thumbs-down')) {
+			status = 'dislike';
+		} else if (target.hasClass('fa fa-comment')) {
+			
+			//function getComments()
+			if (target.parent().parent().find('.comments').length != 0){
+				target.parent().parent().find('.comments').first().toggle()
+			} else {
+		
+				$.get("comments/" + table + '/' + id, function(r){
+					target.parent().parent().append(r);
+				})
+				.fail(function(err){
+					console.log(err.responseText)
+				});
+			}
+			return 'comments';
+		}
 		
 		if (!table || !id || !status){
 			console.log ('Bugsplash! \n table = ' + table + '\n id = ' + id + '\n status = ' + status);
 		}
-		var post = $.get("like", {table: table, refId: id, status: status})
+		$.get("like", {table: table, refId: id, status: status})
 		.done(function(data){
 			$('#likeButtonsPopUp').html(data);
 			$('#likeButtonsPopUp').css({'display': 'inline-block',

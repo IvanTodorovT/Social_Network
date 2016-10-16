@@ -15,7 +15,7 @@ class UploadController extends Controller {
 	public function uploadFiles()
 	{
 		$maxSize = 2097152; //2MB
-		$user_id = \Auth::id();; // got t0 take this from the session or something when we have 100% working users
+		$user_id = \Auth::id();
 		if (!$user_id){
 			return 'You have to be logged in to upload!';
 		}
@@ -70,19 +70,6 @@ class UploadController extends Controller {
 		} catch (\Throwable $e) {
 			return $e->getMessage();
 		}
-		// two ways in laravel
-// 		\DB::insert('INSERT INTO posts (user_id, text, photo, tag1, tag2, tag3) VALUES (?, ?, ?, ?, ?, ?)',
-// 		[$user_id, $text, $photo, $tag1, $tag2, $tag3]);
-
-//		This is the old version with the old tables, delete if this is accepted as final
-// 		$album = empty($_POST['album']) ? NULL : $_POST['album'];
-// 		if ($album) {
-// 			$error = $this->addPostToAlbum($album, $id, $user_id);
-// 			if ($error){
-// 				return $error;
-// 			}
-// 		}
-
 		return 'Upload successful!';
 	}
 	
@@ -94,48 +81,5 @@ class UploadController extends Controller {
 	private function validateAlbumExistance ($album_id)
 	{
 		return @\DB::table('albums')->where('id', $album_id)->first();
-	}
-	
-	private function addPostToAlbum ($albumName, $postId, $userId)
-	{ //delete if the new version is accepted as final
-		$cols = ['name', 'user_id', 'created_at'];
-		$array = @(array)\DB::table('albums')->select($cols)->where([
-				['name', $albumName],
-				['user_id', $userId],
-				])->get()[0];
-		
-		if (empty($array)){
-			$msg = 'Album does not exist. Try adding your image to an album from the options';
-			return $msg;
-		}
-		$array['post_id'] = $postId;
-		$cols[] = 'post_id';
-		$qm = [];
-		for ($i = 0; $i < count($array); $i++){
-			$qm[] = '?';
-		}
-		$success = \DB::insert("INSERT INTO albums (" . implode(', ', $cols) . ") VALUES (" . implode(', ', $qm) . ")",
-		array_values($array));
-		
-		// Version where the id is copied as well, but it's primary key, so...
-//  	$cols = ['id', 'name', 'user_id', 'created_at'];
-// 		$array = @(array)\DB::table('albums')->select($cols)->where([
-// 				['name', $albumName],
-// 				['user_id', $userId],
-// 				])->get()[0]; 
-// 		if (empty($array)){
-// 			$msg = 'Album does not exist. Your post was added to your profile without and album';
-// 			return view('UploadForm', ['message'=>$msg]);
-// 		}
-// 		$array['post_id'] = $postId;
-// 		$cols[] = 'post_id';
-// 		$qm = [];
-// 		for ($i = 0; $i < count($array); $i++){
-// 			$qm[] = '?';
-// 		}
-// 		\DB::insert("INSERT INTO albums (" . implode(', ', $cols) . ") VALUES (" . implode(', ', $qm) . ")",
-// 		array_values($array));
-
-		if (!$success){ return 'Adding to album failed. Try a different album.';}
 	}
 }

@@ -72,6 +72,7 @@ Route::get('/like', 'LikeController@like');
  * Commenting
  */
 Route::get('comments/{table}/{id}', 'CommentsController@getComments');
+Route::post('comments/{table}/{id}', 'CommentsController@submitComment');
 
 /**
  * This route has to be deleted at some point. Used for testing purposes
