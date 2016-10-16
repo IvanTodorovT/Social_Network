@@ -20,6 +20,7 @@
 	<input style="margin-left: 3.5em;" type="text" name="new_firstname" placeholder="New firstname:"/><br><br>
 	<input style="margin-left: 3.5em;" type="text" name="new_lastname" placeholder="New lastname:"/><br><br>
 	<input style="margin-left: 3.5em;" type="text" name="new_username" placeholder="New username:"/><br><br>
+	<textarea name="description" id="" cols="40" rows="5" placeholder="Say some words for you:"></textarea><br />
 	
   
 	

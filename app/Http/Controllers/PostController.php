@@ -64,4 +64,21 @@ class PostController extends Controller
     				
     	return view('wall', $data);
     }
+    
+    public function listAll2($user_id){
+    
+    	$user = DB::table('users2')->where('id', '=', $user_id)->first();
+    	 
+    	$data = array (
+    			'user' => $user
+    	);
+    	 
+    
+    
+    	 
+    	 
+    	return view('profile_preview', $data);
+    	 
+    }
+    
 }

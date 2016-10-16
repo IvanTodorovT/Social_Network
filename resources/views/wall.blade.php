@@ -41,7 +41,7 @@ use App\Post;
 		
 		
 		
-		<a href=""><?=  $post->author->firstname,' ', $post->author->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
+		<a href="{{ URL('profile_preview/'.$post->author->id )}}""><?=  $post->author->firstname,' ', $post->author->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
 		
 		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
 		<div class='likeButtons'></div>
