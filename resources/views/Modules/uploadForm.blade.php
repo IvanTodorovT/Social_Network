@@ -1,3 +1,13 @@
+<?php
+use App\Tags;
+
+$tags = Tags::getTags();
+$options = '<option value=\'NULL\'>---</option>';
+foreach ($tags as $no => $tag){
+	$options .= '<option value=\'' . ($no + 1) . "'>" . $tag . '</option>';
+}
+?>
+
 <div id='up-frm-msg'></div>
 <form method='post' enctype="multipart/form-data">
 <!-- <form action='upload' method="post" enctype="multipart/form-data"> -->
@@ -12,34 +22,13 @@
 	<div>
 		<p> Would you like to select tags for your photo? </p>
 		<select id='tag1' name='tag1'>
-	       	<option value='NULL'>---</option>
-	       	<option value='landscape'>Landscape</option>
-	       	<option value='portrait'>Portrait</option>
-	       	<option value='animals'>Animals</option>
-	       	<option value='food'>Food</option>
-	       	<option value='sci-fi'>Sci-Fi</option>
-	       	<option value='fantasy'>Fantasy</option>
-	       	<option value='cars'>Cars</option>
-	       </select>
+			<?= $options?>
+	    </select>
 		<select name='tag2'>
-	       	<option value='NULL'>---</option>
-	       	<option value='landscape'>Landscape</option>
-	       	<option value='portrait'>Portrait</option>
-	       	<option value='animals'>Animals</option>
-	       	<option value='food'>Food</option>
-	       	<option value='sci-fi'>Sci-Fi</option>
-	       	<option value='fantasy'>Fantasy</option>
-	       	<option value='cars'>Cars</option>
+			<?= $options?>
 	       </select>
 		<select name='tag3'>
-	       	<option value='NULL'>---</option>
-	       	<option value='landscape'>Landscape</option>
-	       	<option value='portrait'>Portrait</option>
-	       	<option value='animals'>Animals</option>
-	       	<option value='food'>Food</option>
-	       	<option value='sci-fi'>Sci-Fi</option>
-	       	<option value='fantasy'>Fantasy</option>
-	       	<option value='cars'>Cars</option>
+			<?= $options?>
 		</select>
 	</div>
 	<input type="submit">
