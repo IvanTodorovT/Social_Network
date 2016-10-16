@@ -4,6 +4,10 @@
  */
 
 $(function (){
+	addLikes();
+});
+
+function addLikes(){
 	$('body:not(:has("#likeButtonsPopUp"))').append('<div id="likeButtonsPopUp">POP</div>')
 
 	var likeButtonsDestinations = $(".likeButtons:not(:has(i))");
@@ -74,4 +78,4 @@ $(function (){
 			console.log(err)
 		});
 	});
-});
+};

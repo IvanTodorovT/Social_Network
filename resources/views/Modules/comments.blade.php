@@ -15,8 +15,12 @@
 </form>
 </div>
 
-<script type="text/javascript" src="js/addLikes.js"></script>
+
 <script>
+	$(function (){
+		addLikes();
+	});
+
 	function submitNewComment(form)
 	{
 		//function getTable()
