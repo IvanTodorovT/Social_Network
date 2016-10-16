@@ -1,4 +1,9 @@
 <?php
+use App\Post;
+Route::get('/test',function(){
+	$post = Post::with('author')->first();
+	var_dump($post->author->firstname);
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,28 +14,20 @@ Auth::routes();
  Route::get('/home', 'HomeController@profile');
 // Auth::routes(); 
 
-Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
- 
-Route::post('/follow}',['as'=>'user.follow','uses'=>'FollowController@follow']);
-Route::post('/unfollow',['as'=>'user.unfollow','uses'=>'FollowController@unfollow']);
-
- Route::post('/post',['as'=>'post.submit','uses'=>'PostController@submit']);
- 
- Route::get('/wall',['as'=>'post.test_all','uses'=>'PostController@listAll']);
+Route::group(['middleware'=>'auth'],function(){
+	Route::get('/profile', ['as'=>'profile.show','uses'=>'HomeController@profile']);
+	
+	Route::post('/follow}',['as'=>'user.follow','uses'=>'FollowController@follow']);
+	Route::post('/unfollow',['as'=>'user.unfollow','uses'=>'FollowController@unfollow']);
+	
+	Route::post('/post',['as'=>'post.submit','uses'=>'PostController@submit']);
+	
+	Route::get('/wall',['as'=>'post.test_all','uses'=>'PostController@listAll']);
+});
  
  Route::get('/post/{post_id}',['as'=>'post.test','uses'=>'PostController@show']);
 
- 
 
-	Route::get('wall', function () {
-	 	$posts = App\Post::all();
-	
-		$data = array (
-			'posts' => $posts
-		);
-		 
-		return view('wall', $data);
-	});
 	
 	
 /* 

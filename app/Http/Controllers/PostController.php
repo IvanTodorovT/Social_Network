@@ -51,15 +51,17 @@ class PostController extends Controller
     
     public function listAll(Request $request){
     
-    	$posts = Post::where('status',1)->get();
+    	//$posts = Post::where('status',1)->get();
+    	$followers_ids = Auth::user()->getFollowersIds();
+    	$posts = Post::with('author')
+    	->whereIn('user_id',$followers_ids)
+    	->orderBy('created_at','desc')
+    	->get();
     	
-    	//$posts = Post::all();
-    	//var_dump($posts);
-    	//echo $posts->pluck('text');
+    	$data = array (
+    		'posts' => $posts
+    	 );
+    				
+    	return view('wall', $data);
     }
-
-
-    
-    
-    
 }
