@@ -10,7 +10,7 @@ class Comments
 {
 	// tableName = post_comments
 	// refName = post_id
-	public static function getComments($tableName, $refName, $refId)
+	public static function getComments($table, $tableName, $refName, $refId)
 	{
 		if (!self::canDo()){
 			return 'You are not allowed to comment this';
@@ -25,10 +25,11 @@ class Comments
 	
 	public static function canDo()
 	{
+		\DB::table()
 		return true; //validation required
 	}
 	
-	public static function storeComment ($tableName, $refName, $refId, $text)
+	public static function storeComment ($table, $tableName, $refName, $refId, $text)
 	{
 		if (!self::canDo()){
 			return null; //null is not ok

@@ -13,7 +13,7 @@ class CommentsController extends Controller
     	}
     	extract($this->dealingWithBadArchitecture($table));
     	
-    	$array = Comments::getComments($tableName, $refName, $id);
+    	$array = Comments::getComments($table, $tableName, $refName, $id);
     	return view('Modules.comments', ['commentsArray' => $array]);
     }
     
@@ -25,7 +25,7 @@ class CommentsController extends Controller
     	}
     	extract($this->dealingWithBadArchitecture($table));
     	
-    	$err = Comments::storeComment($tableName, $refName, $id, $text);
+    	$err = Comments::storeComment($table, $tableName, $refName, $id, $text);
     	return $err ? $err : '';
     }
     
