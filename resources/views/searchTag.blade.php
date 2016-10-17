@@ -20,6 +20,7 @@ $options = Tags::getDropDownOptions();
 
 
 
+
 <div id='resultContainer'>
 	<form id='searchPhotoByTagForm'>
 		<div>

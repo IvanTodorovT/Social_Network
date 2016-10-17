@@ -12,6 +12,8 @@ use Symfony\Component\VarDumper\VarDumper;
 <a href="profile" style="margin-left:40em;">Profile</a>
 <a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
 <a href="wall" style="margin-left:3em;">Wall</a>
+<a href="searchText" style="margin-left:3em;">Search</a>
+
 
 <h1>Search page<h1>
 <form method="post" action="{{route('search.submit')}}">

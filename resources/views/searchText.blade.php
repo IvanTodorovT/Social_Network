@@ -14,7 +14,9 @@ use App\User;
 <a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
 <a href="wall" style="margin-left:3em;">Wall</a>
 
-<h1>SearchTag page<h1>
+<a href="search" style="margin-left:3em;">FollowMe</a>
+
+<h1>Search# page<h1>
 <form method="post" action="{{route('searchText.submit')}}">
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
