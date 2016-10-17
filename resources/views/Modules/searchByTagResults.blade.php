@@ -47,7 +47,7 @@ for ($i = count($relatedness); $i > 0 && $i > count($relatedness) - $resultsPerV
 					<img style="max-width:30%; max-height:30vh;" src="' . $photo . '" alt="no pic">
 				</div>
 				' . $album . '
-				<p> Tags: ' . $tags . '
+				<p style:"width: 100%"> Tags: ' . $tags . '</p>
 				<span style="opacity: 0.5;">' . $date . '</span>
 				<div class="likeButtons"></div>
 				<hr style="margin-top: 3.4em">
@@ -63,7 +63,6 @@ for ($i = count($relatedness); $i > 0 && $i > count($relatedness) - $resultsPerV
 
 <script>
 	$(function (){
-
 		addLikes();
 	});
 </script>

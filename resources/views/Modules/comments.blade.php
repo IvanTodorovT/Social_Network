@@ -10,8 +10,8 @@
 @endforeach
 <form action="javascript:;" onsubmit="submitNewComment(this)">
 	<input id='fuckinToken' type="hidden" name="_token" value="{{ csrf_token() }}">
-    <textarea rows="4" cols="40" name='text' placeholder='What do you think?'></textarea>
-    <button type='submit'>Comment</button>
+    <textarea rows="4" cols="40" name='text' style="width: 100%" placeholder='What do you think?'></textarea>
+    <button type='submit' style="margin: 0 auto">Comment</button>
 </form>
 </div>
 

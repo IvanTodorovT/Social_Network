@@ -34,7 +34,12 @@ function addLikes(){
 		} else if (classes.match('post')) {
 			table = 'post';
 		} else if (classes.match('comment')) {
-			table = 'comment';
+			var grandClasses = target.parent().parent().parent().parent().attr("class");
+			if (grandClasses.match('album')) {
+				table = 'album_comment';
+			} else if (grandClasses.match('post')) {
+				table = 'post_comment';
+			}
 		}
 		
 		//function getId()
