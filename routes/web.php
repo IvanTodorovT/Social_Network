@@ -87,9 +87,14 @@ Route::get('/edit', function () {
 	Route::post('/edit',['as'=>'edit.submit','uses'=>'EditController@submit']);
 	Route::get('/edit/{edit_id}',['as'=>'edit.test','uses'=>'EditController@show']);
 	
-	
-	Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
-	Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
+/**
+ * SearchController is originally used for user searches, but since it's general name I'm using it for 
+ * post searches by tag. The access URIs are different, so no conflicts should occur
+ */
+Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
+Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
+Route::get('/searchPosts','SearchController@searchPostForm');
+Route::get('/searchByTag','SearchController@getSearchByTagResults');
 	
 	
 

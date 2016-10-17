@@ -7,20 +7,22 @@ use App\Tags;
 $options = Tags::getDropDownOptions();
 ?>
 
-<form id='searchPhotoByTagForm'>
-	<div>
-		<p style='font-size: 1.3em'> Choose tags to search photos by </p>
-		<select><?= $options?></select>
-		<select><?= $options?></select>
-		<select><?= $options?></select>
-	</div>
-	<div>
-		<select><?= $options?></select>
-		<select><?= $options?></select>
-		<select><?= $options?></select>
-	</div>
-	<button type='submit'>Search</button>
-</form>
+<div id='resultContainer'>
+	<form id='searchPhotoByTagForm'>
+		<div>
+			<p style='font-size: 1.3em'> Choose tags to search photos by </p>
+			<select><?= $options?></select>
+			<select><?= $options?></select>
+			<select><?= $options?></select>
+		</div>
+		<div>
+			<select><?= $options?></select>
+			<select><?= $options?></select>
+			<select><?= $options?></select>
+		</div>
+		<button type='submit'>Search</button>
+	</form>
+</div>
 
 <script>
 $(function (){
@@ -36,8 +38,9 @@ $(function (){
 		});
 
 		$.get('searchByTag', {tags: tags})
-		.done(function(data){
-			console.log(data)
+		.done(function(view){
+			$('#resultContainer').html(view);
+			console.log($('#resultContainer').html());
 		})
 		.fail(function(err){
 			console.log(err)

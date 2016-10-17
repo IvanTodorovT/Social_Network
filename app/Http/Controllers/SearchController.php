@@ -14,6 +14,7 @@ use Redirect;
 use App\Post;
 
 use View;
+use App\Tags;
 
 class SearchController extends Controller
 {
@@ -43,6 +44,11 @@ class SearchController extends Controller
 	    if(count($_GET['tags']) > 6){
 	    	return 'Are you hacking me? As if 6 tags were not enough';
 	    }
-	    return var_dump(Auth::user()->getFollowersIds());
+	    $posts = Tags::getMatches($_GET['tags']);
+	    return view('searchByTagResults', [
+	    			'posts' => $posts, 
+	    			'tags' => $_GET['tags'],
+	    			'allTags' => Tags::getTags()
+	    ]);
     }
 }
