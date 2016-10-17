@@ -34,21 +34,5 @@ class SearchController extends Controller
     	return view('search');
     }
 
-    public function searchPostForm()
-    {
-    	return view('searchTag');
-    }
-    
-    public function getSearchByTagResults()
-    {
-	    if(count($_GET['tags']) > 6){
-	    	return 'Are you hacking me? As if 6 tags were not enough';
-	    }
-	    $posts = Tags::getMatches($_GET['tags']);
-	    return view('searchByTagResults', [
-	    			'posts' => $posts, 
-	    			'tags' => $_GET['tags'],
-	    			'allTags' => Tags::getTags()
-	    ]);
-    }
+
 }
