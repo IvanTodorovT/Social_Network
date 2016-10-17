@@ -1,5 +1,6 @@
 <?php
 
+$relatedness = [];
 foreach ( $posts as $key => $post ){
 	$hits = count(array_intersect([$post->tag1, $post->tag2, $post->tag3], $tags));
 	$relatedness[$hits][] = $key;
@@ -8,7 +9,10 @@ foreach ( $posts as $key => $post ){
 $output = '';
 $resultsPerView = 50;
 
-for ($i = count($relatedness); $i > 0 && $i > count($relatedness) - $resultsPerView; $i--) {
+for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $resultsPerView; $i--) {
+	if(empty($relatedness[$i])){
+		continue;
+	}
 	foreach ($relatedness[$i] as $key){
 		$post = $posts[$key];
 		$who = $post->firstname . ' ' . $post->lastname;
@@ -36,7 +40,7 @@ for ($i = count($relatedness); $i > 0 && $i > count($relatedness) - $resultsPerV
 					: '';
 		
 		$output .= 
-			'<div class="' . $type . '" id=' . $id . ' style="display: inline-block; width: 30%; margin: 1em 7.5%;">
+			'<div class="' . $type . '" id=' . $id . ' style="display: inline-block; width: 30%; margin: 1em 10%;">
 				<p>
 					<img style="width:50px; height:50px;" src="' . $avatar . '" alt="no pic">
 					<a href="profile_preview/"' . $authorID . '">' . $who . '</a>
@@ -54,9 +58,13 @@ for ($i = count($relatedness); $i > 0 && $i > count($relatedness) - $resultsPerV
 			</div>';
 	}
 }
+
+if (count($relatedness) == 0){
+	$output = '<h2 style="text-align: center">No search results</h2>';
+}
 ?>
 
-<section id='searchByTagResults' style='font-size: 1.3em; margin-left: 10%;'>
+<section id='searchByTagResults' style='font-size: 1.3em;'>
 	<?= $output?>
 </section>
 

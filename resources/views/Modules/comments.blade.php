@@ -35,7 +35,7 @@
 		}
 		
 		var id = $(form).parent().parent().attr('id');
-		var text = $(form).find('textarea').val();
+		var text = String($(form).find('textarea').val());
 		var token = $('#fuckinToken').val()
 		$.post("comments/" + table + '/' + id, {text: text, _token: token})
 		.done(function(err){
