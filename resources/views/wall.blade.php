@@ -10,7 +10,8 @@ use App\Post;
 	<a href="profile" style="margin-left: 35em;">Profile</a> <a
 		href="/ittalents/Final/social_lara/Final3/public/"
 		style="margin-left: 3em;">Welcome</a> 
-		<a href="search" style="margin-left: 3em;">Search</a>
+		<a href="search" style="margin-left: 3em;">FollowMe</a>
+		<a href="searchText" style="margin-left: 3em;">Search</a>
 
 	
 	<h1>Wall page<h1>

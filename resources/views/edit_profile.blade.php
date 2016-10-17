@@ -8,7 +8,8 @@
 <a href="wall" style="margin-left:40em;">Wall</a>
 <a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
 <a href="profile" style="margin-left:3em;">Profile</a>
-<a href="search" style="margin-left:3em;">Search</a>
+		<a href="search" style="margin-left: 3em;">FollowMe</a>
+		<a href="searchText" style="margin-left: 3em;">Search</a>
 
 <div style="margin-left: 3em;">
 <h1 >Edit profile page:</h1>

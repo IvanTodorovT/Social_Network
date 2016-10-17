@@ -1,6 +1,6 @@
 @extends('layouts.app2')
  @section('content')
-
+<a href='javascript:history.back(1);'>Back</a><br><br />
 <div id='msg'></div>
 <form method='post' enctype="multipart/form-data">
 <!-- <form action='upload' method="post" enctype="multipart/form-data"> -->

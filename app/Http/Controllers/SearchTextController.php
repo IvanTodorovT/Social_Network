@@ -15,7 +15,7 @@ use App\Post;
 
 use View;
 
-class SearchTagController extends Controller
+class SearchTextController extends Controller
 {
     
 public function submit(Request $request)
@@ -37,12 +37,17 @@ public function submit(Request $request)
      	$data = [];
 	    $data['postove'] = $postove;
     	
- 		return View::make("searchTag",$data);
+ 		return View::make("searchText",$data);
 	 	
     }  
     
-    public function show(){
-    	return view('searchTag');
+ public function show(){
+   
+    $postove = array();
+    	$data = array (
+ 			'postove' => $postove
+ 	);
+    	return view('searchText')->with($data);
     }
     
     
