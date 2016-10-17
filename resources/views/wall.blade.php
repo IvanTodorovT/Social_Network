@@ -30,7 +30,22 @@ use App\Post;
 	
 	
 	$user_pic = $post->author->profile_pic;
-	$output_prof = explode("\\",$user_pic)
+	$output_prof = explode("\\",$user_pic);
+	
+	
+	
+	
+	/*  
+	$like =	DB::table('posts')
+	->join('post_status', function($join)
+	{
+		$join->on('posts.id', '=', 'posts_status.post_id');
+	})
+	->where('status', '=', 'like')
+	->count(); */
+	
+	
+	
 	?>
 
 <!-- 	I added an inline style here! Remove it if you write css -->

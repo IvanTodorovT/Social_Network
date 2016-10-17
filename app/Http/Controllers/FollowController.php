@@ -18,7 +18,7 @@ class FollowController extends Controller {
 					array('user_id' => Auth::user()->id, 'friend_id' => $user_id)
 					);
 		}catch(Exception $e){
-			$data['error'] = "Error following user.";
+			$data['error'] = $e->getMessage();
 		}
 		return response()->json($data);
 	}

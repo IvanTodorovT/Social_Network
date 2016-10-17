@@ -10,9 +10,9 @@ class Comments
 	// refName = post_id
 	public static function getComments($table, $tableName, $refName, $refId)
 	{
-		if (!self::canDo($table, $refName, $refId)){
-			return 'You are not allowed to comment this';
-		}
+// 		if (!self::canDo($table, $refName, $refId)){
+// 			return 'You are not allowed to comment this';
+// 		}
 		return @\DB::table($tableName)
 					->join('users2', 'users2.id', '=', $tableName . '.user_id')
 					->select('users2.firstname', 'users2.lastname',
@@ -33,7 +33,7 @@ class Comments
 	public static function storeComment ($table, $tableName, $refName, $refId, $text)
 	{
 		if (!self::canDo($table, $refName, $refId)){
-			return null; //null is not ok
+			return 'You are not allowed to comment this';
 		}
 		$userId = Auth::id();
 		try {

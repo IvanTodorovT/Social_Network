@@ -13,8 +13,8 @@ class CommentsController extends Controller
     	}
     	extract($this->dealingWithBadArchitecture($table));
     	
-    	$array = Comments::getComments($table, $tableName, $refName, $id);
-    	return view('Modules.comments', ['commentsArray' => $array]);
+    	$resp = Comments::getComments($table, $tableName, $refName, $id);
+    	return view('Modules.comments', ['commentsArray' => $resp]);
     }
     
     public function submitComment($table, $id)
