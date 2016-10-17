@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Tags;
 
 $options = Tags::getDropDownOptions();
 ?>

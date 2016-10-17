@@ -93,7 +93,7 @@ Route::get('/edit', function () {
  */
 Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
 Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
-Route::get('/searchPosts','SearchController@searchPostForm');
+// Route::get('/searchPosts','SearchController@searchPostForm');
 Route::get('/searchByTag','SearchController@getSearchByTagResults');
 	
 	
