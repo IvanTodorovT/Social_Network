@@ -21,19 +21,18 @@ class SearchTextController extends Controller
 public function submit(Request $request)
     {
     $findme = $request->input('content4');
-	    
-	$postove =	DB::table('users2')
- 	->join('posts', function($join)
- 	{
- 		$join->on('users2.id', '=', 'posts.user_id');
- 	})
- 	->where('text', 'like', '%'.$findme.'%')
- 	->get();
-
- 	
+    
+    $postove =	DB::table('users2 as u')
+    ->join('posts as p', function($join)
+   
+    {
+    	$join->on('u.id', '=', 'p.user_id');
+    })
+    ->select('u.id AS uid','p.id AS pid','u.firstname','u.lastname','u.created_at','p.text','p.photo','u.profile_pic')
+    ->where('text', 'like', '%'.$findme.'%')
+    ->get();
+    
  
- 
-    	 
      	$data = [];
 	    $data['postove'] = $postove;
     	
@@ -49,7 +48,5 @@ public function submit(Request $request)
  	);
     	return view('searchText')->with($data);
     }
-    
-    
 
 }

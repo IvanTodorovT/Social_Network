@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use function League\Flysystem\get;
+use DB;
+use Auth;
+use function Barryvdh\Debugbar\alert;
 
-class UploadController extends Controller {
+class CreateAlbumController extends Controller {
 	
 	public function uploadForm()
 	{
-		return view('Modules.uploadForm');
+		return view('Modules.uploadForm2');
 	}
 	
 	public function uploadFiles()
@@ -47,27 +50,31 @@ class UploadController extends Controller {
 		$this->deleteTmp();
 		
 		$album_id = empty($_POST['album']) ? NULL : $_POST['album'];
-		
-		var_dump($album_id);
+		if ($album_id) { 
+			if (!$this->validateAlbumExistance ($album_id)) {
+				return 'Album does not exist';
+			}
+		}
 
 		$text = empty($_POST['text']) ? NULL : $_POST['text'];
-		$tag1 = empty($_POST['tag1']) ? NULL : $_POST['tag1'];
-		$tag2 = empty($_POST['tag2']) ? NULL : $_POST['tag2'];
-		$tag3 = empty($_POST['tag3']) ? NULL : $_POST['tag3'];
+		$name = empty($_POST['name']) ? NULL : $_POST['name'];
+		
 		try {
-			$id = @\DB::table('posts')->insertGetId([
-					'user_id' => $user_id, 
-					'album_id' => $album_id,
-					'text' => $text,
-					'photo' => $fileName,
-					'tag1' => $tag1,
-					'tag2' => $tag2,
-					'tag3' => $tag3
+	
+			$id = DB::table('albums')->insert([
+					'user_id' => Auth::user()->id, 
+					'description' => $text,
+					'cover_photo' => $fileName,
+					'name' => $name,
+					
 			]);
 		} catch (\Throwable $e) {
 			return $e->getMessage();
 		}
-		return 'Upload successful!';
+		
+		$message = "Upload successful!";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+		return view('profile');
 	}
 	
 	private function deleteTmp()

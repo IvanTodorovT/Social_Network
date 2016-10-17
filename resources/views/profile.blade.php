@@ -38,7 +38,6 @@ $output = explode("\\",$string);
 
 
 
-
 <div id='msg' style="margin-top:3em;"></div>
 
 <section id='uploadForm'></section>

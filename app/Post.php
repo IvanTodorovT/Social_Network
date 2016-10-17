@@ -17,8 +17,12 @@ class Post extends Model
    	return $this->hasMany('App\Comment');
    }
    
-   //????
    public function albums(){
    	return $this->belongsTo('App\Album');
    }
+   
+   public function returnAll(){
+   	
+   }
+   
 }
