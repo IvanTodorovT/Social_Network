@@ -1,7 +1,7 @@
 
  <?php 
  
- $user_pic = $user->photo;
+ $user_pic = $user->profile_pic;
  $output_prof = explode("\\",$user_pic)
  
  

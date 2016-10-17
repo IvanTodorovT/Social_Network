@@ -106,4 +106,5 @@ Route::get('/searchByTag','SearchController@getSearchByTagResults');
 	
 Route::get('/profile_preview/{user_id}',['as'=>'edit.test','uses'=>'PostController@listAll2']);
 	
-
+Route::post('/searchTag',['as'=>'searchTag.submit','uses'=>'SearchTagController@submit']);
+Route::get('/searchTag',['as'=>'searchTag.test','uses'=>'SearchTagController@show']);

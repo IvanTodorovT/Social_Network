@@ -58,7 +58,7 @@ class UploadProfileController extends Controller {
 		
 		$id = @\DB::table('users2')->where('id', Auth::user()->id)->update([
 				
-				'photo' => $photo,
+				'profile_pic' => $photo,
 				
 		]);
 		// two ways in laravel
