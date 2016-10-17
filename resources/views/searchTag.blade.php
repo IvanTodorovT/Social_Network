@@ -7,6 +7,7 @@ use App\Tags;
 $options = Tags::getDropDownOptions();
 ?>
 
+
 <div id='resultContainer'>
 	<form id='searchPhotoByTagForm'>
 		<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
