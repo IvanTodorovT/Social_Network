@@ -10,8 +10,7 @@ use App\Post;
 	<a href="profile" style="margin-left: 35em;">Profile</a> <a
 		href="/ittalents/Final/social_lara/Final3/public/"
 		style="margin-left: 3em;">Welcome</a> 
-		<a href="search" style="margin-left: 3em;">FollowMe</a>
-		<a href="searchText" style="margin-left: 3em;">Search</a>
+		<a href="search" style="margin-left: 3em;">Search</a>
 
 	
 	<h1>Wall page<h1>
@@ -30,22 +29,7 @@ use App\Post;
 	
 	
 	$user_pic = $post->author->profile_pic;
-	$output_prof = explode("\\",$user_pic);
-	
-	
-	
-	
-	/*  
-	$like =	DB::table('posts')
-	->join('post_status', function($join)
-	{
-		$join->on('posts.id', '=', 'posts_status.post_id');
-	})
-	->where('status', '=', 'like')
-	->count(); */
-	
-	
-	
+	$output_prof = explode("\\",$user_pic)
 	?>
 
 <!-- 	I added an inline style here! Remove it if you write css -->

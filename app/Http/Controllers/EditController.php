@@ -23,7 +23,7 @@ class EditController extends Controller
 	 $new_firstname = $request->input('new_firstname');
 	 $new_lastname = $request->input('new_lastname');
 	 $new_username = $request->input('new_username');
-	 $new_description = $request->input('description');
+	 $new_description = $request->input('new_description');
 
 	 
 	 
