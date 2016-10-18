@@ -23,7 +23,7 @@ $albums = DB::table('albums')->get();
 ?>
 <label for="album">Select album for your post:</label>
 <select name="album">
-<option value="1">----</option>
+
     @foreach($albums as $album)
      <option value="{{ $album->id }}">{{ $album->name}} </option>
 
