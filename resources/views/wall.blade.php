@@ -8,13 +8,12 @@ use App\Http\Controllers\FollowController;
 
 
 <div style="margin-left: 3em;">
-	<a href="profile" style="margin-left: 35em;">Profile</a> <a
-		href="/ittalents/Final/social_lara/Final3/public/"
-		style="margin-left: 3em;">Welcome</a> 
-		<a href="search" style="margin-left: 3em;">Search</a>
-
+<a href="profile" style="margin-left:13.5em;font-size:2em;">Profile</a> 
+<a href="search" style="margin-left:3em;font-size:2em;">FollowMe</a>
+<a href="searchText" style="margin-left:3em;font-size:2em;">Search</a>
+<hr />
 	
-	<h1>Wall page<h1>
+	<h1>See all news from your friends:<h1>
 	
 			</body>
 
@@ -77,13 +76,13 @@ use App\Http\Controllers\FollowController;
 		
 		
 		
-		<a href="{{ URL('profile_preview/'.$post->uid )}}""><?=  $post->firstname,' ', $post->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
+		<a style="display: inline;" href="{{ URL('profile_preview/'.$post->uid )}}""><h2 style="display: inline;"><?=  $post->firstname,' ', $post->lastname;?></h2></a><p style="display: inline;"> say: </p><p style="display: inline;">{{ $post->text}} &nbsp&nbsp</p>
 		
-		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
+		<img style="width:150px; height:150px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
 
-		<p>Posted at:{{$post->created_at}}</p>
+		<p>At: {{$post->created_at}}</p>
 		
-		<p>Album:</p><a href="{{ URL('album_preview/'.$post->aid )}}""><?=  $post->name?></a>
+		<p style="display: inline;">Album: </p><a href="{{ URL('album_preview/'.$post->aid )}}""><?=  $post->name?></a>
 		
 		
 		
