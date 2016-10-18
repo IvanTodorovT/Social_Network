@@ -87,14 +87,9 @@ Route::get('/edit', function () {
 	Route::post('/edit',['as'=>'edit.submit','uses'=>'EditController@submit']);
 	Route::get('/edit/{edit_id}',['as'=>'edit.test','uses'=>'EditController@show']);
 	
-/**
- * SearchController is originally used for user searches, but since it's general name I'm using it for 
- * post searches by tag. The access URIs are different, so no conflicts should occur
- */
+//
 Route::post('/search',['as'=>'search.submit','uses'=>'SearchController@submit']);
 Route::get('/search',['as'=>'search.test','uses'=>'SearchController@show']);
-// Route::get('/searchPosts','SearchController@searchPostForm');
-Route::get('/searchByTag','SearchController@getSearchByTagResults');
 	
 	
 
@@ -109,3 +104,15 @@ Route::get('/profile_preview/{user_id}',['as'=>'edit.test','uses'=>'PostControll
 	
 Route::post('/searchText',['as'=>'searchText.submit','uses'=>'SearchTextController@submit']);
 Route::get('/searchText',['as'=>'searchText.test','uses'=>'SearchTextController@show']);
+
+Route::get('/searchTag','SearchTagController@show');
+Route::post('/searchTag','SearchTagController@submit');
+
+
+Route::get('/createAlbum', 'CreateAlbumController@uploadForm');
+Route::post('/createAlbum', 'CreateAlbumController@uploadFiles');
+
+
+
+Route::get('/album_preview/{album_id}',['as'=>'show.album','uses'=>'CreateAlbumController@preview']);
+

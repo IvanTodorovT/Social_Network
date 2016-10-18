@@ -2,6 +2,7 @@
 public/node_modules
 /resources/uploads
 /public/storage
+/.git
 /vendor
 /.idea
 Homestead.json

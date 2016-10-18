@@ -27,7 +27,7 @@ class LikeController extends Controller
     		return 'You can only: ' . implode(', ', $statuses);
     	}
     	$tableName = $table . '_status';
-    	$refName = $table . '_id';
+    	$refName = strstr($table, 'comment') ? 'comment_id' : $table . '_id';
     	
     	$existant = Likes::checkStatus($tableName, $refName, $refId);
     	$err = '';

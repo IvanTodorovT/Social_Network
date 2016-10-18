@@ -6,12 +6,13 @@
 
 .likeButtons{
 	margin-top: -36px;
+	overflow: auto;
+	float: right;
 }
 
 .likeButtons i{
 	font-size: 1.3em;
 	padding-left: 1em;
-	float: right;
 	cursor: pointer;
 }
 
@@ -26,4 +27,12 @@
 
 .comment {
 	margin-bottom: 1.3em;
+}
+
+.inactive {
+	color: grey !important;
+}
+
+p {
+	word-wrap: break-word;	/*this can end badly*/
 }

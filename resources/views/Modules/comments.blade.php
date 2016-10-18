@@ -1,4 +1,10 @@
 <div class='comments' style="margin-top: 1.3em">
+
+@if (!is_array($commentsArray))
+<p>{{{$commentsArray}}}</p>
+<?php return;?>
+@endif
+
 @foreach ($commentsArray as $unusable)
 	<?php $comment = (array)$unusable;?>
     <div class='comment' id={{$comment['id']}}>
@@ -10,8 +16,8 @@
 @endforeach
 <form action="javascript:;" onsubmit="submitNewComment(this)">
 	<input id='fuckinToken' type="hidden" name="_token" value="{{ csrf_token() }}">
-    <textarea rows="4" cols="40" name='text' placeholder='What do you think?'></textarea>
-    <button type='submit'>Comment</button>
+    <textarea rows="4" cols="40" name='text' style="width: 100%" placeholder='What do you think?'></textarea>
+    <button type='submit' style="margin: 0 auto">Comment</button>
 </form>
 </div>
 
@@ -35,11 +41,16 @@
 		}
 		
 		var id = $(form).parent().parent().attr('id');
-		var text = $(form).find('textarea').val();
+		var text = String($(form).find('textarea').val());
 		var token = $('#fuckinToken').val()
 		$.post("comments/" + table + '/' + id, {text: text, _token: token})
 		.done(function(err){
 			handleANewComment(err);
+			
+			var countComments = $(form).parent().parent().find('.likeButtons').find('.countComments');
+			countComments.html(parseInt(countComments.html()) + 1)
+
+			$(form).find('textarea').val('');
 		})
 		.fail(function(err){
 			console.log(err)

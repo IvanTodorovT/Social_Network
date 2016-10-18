@@ -65,7 +65,7 @@ function follow(el,user_id){
 		   
 		    response = JSON.parse(http.responseText)
 		    if(response.error != ""){
-			    alert("Error with following user");
+			    alert(response.error);
 		    }else{
 			    el.innerHTML = "Unfollow";
 			    el.setAttribute("onclick","unfollow(this,"+user_id+")");

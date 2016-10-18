@@ -18,13 +18,24 @@ class FollowController extends Controller {
 					array('user_id' => Auth::user()->id, 'friend_id' => $user_id)
 					);
 		}catch(Exception $e){
-			$data['error'] = "Error following user.";
+			$data['error'] = $e->getMessage();
 		}
 		return response()->json($data);
 	}
 	
-	public function unfollow(){
+public function unfollow(){
 		$data = ['error'=>[]];
+		
+		
+		$user_id = Input::get('user_id');
+		try{
+			DB::table('users_friends')->where('user_id', '=', Auth::user()->id)
+			->where('friend_id' , $user_id)
+					->delete();
+			
+		}catch(Exception $e){
+			$data['error'] = "Error following user.";
+		}
 		return response()->json($data);
 	}
 }

@@ -21,11 +21,11 @@ function addLikes(){
 		);	
 	});
 	
-	
-	likeButtonsDestinations.parent().css({"overflow": "auto"});
+	var notActivated = $(".likeButtons:not(.Like_Buttons_Initiated");
 
-	likeButtonsDestinations.find('i').on('click', function(e){
+	notActivated.find('i').on('click', function(e){
 		var target = $(e.target);
+		
 		//function getTable()
 		var classes = target.parent().parent().attr("class");
 		var table = '';
@@ -34,7 +34,12 @@ function addLikes(){
 		} else if (classes.match('post')) {
 			table = 'post';
 		} else if (classes.match('comment')) {
-			table = 'comment';
+			var grandClasses = target.parent().parent().parent().parent().attr("class");
+			if (grandClasses.match('album')) {
+				table = 'album_comment';
+			} else if (grandClasses.match('post')) {
+				table = 'post_comment';
+			}
 		}
 		
 		//function getId()
@@ -73,9 +78,31 @@ function addLikes(){
 				'left': e.pageX, 'top': e.pageY
 			});
 		    $("#likeButtonsPopUp").fadeOut(2500);
+		    if(data == 'deleted'){
+		    	target.toggleClass('inactive');
+		    	if (target.hasClass('fa-thumbs-up')) {
+		    		target.parent().find('.countLikes')
+		    				.html(parseInt(target.parent().find('.countLikes').html()) - 1);
+		    	} else if (target.hasClass('fa-thumbs-down')) {
+		    		target.parent().find('.countDislikes')
+		    				.html(parseInt(target.parent().find('.countDislikes').html()) - 1);
+		    	}
+		    } else {
+		    	target.parent().find('[class*=fa-thumbs-]').removeClass('inactive');
+		    	target.toggleClass('inactive');
+		    	if (target.hasClass('fa-thumbs-up')) {
+		    		target.parent().find('.countLikes')
+		    				.html(parseInt(target.parent().find('.countLikes').html()) + 1);
+		    	} else if (target.hasClass('fa-thumbs-down')) {
+		    		target.parent().find('.countDislikes')
+		    				.html(parseInt(target.parent().find('.countDislikes').html()) + 1);
+		    	}
+		    }
 		})
 		.fail(function(err){
 			console.log(err)
 		});
 	});
+	
+	notActivated.addClass('Like_Buttons_Initiated')
 };
