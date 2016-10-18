@@ -34,13 +34,15 @@ public function submit(Request $request)
     ->where('text', 'like', '%#'.$findme.'%')
     ->get();
     
+    $idArray = $numbers = [];
     foreach ($postove as $post) {
     	$idArray[] = $post->pid;
     }
      
-    $numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
-    $numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
-    
+	if ($idArray){
+	   	$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
+	   	$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
+  	}   
  
      	$data = [];
 	    $data['postove'] = $postove;

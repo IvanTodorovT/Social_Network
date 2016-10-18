@@ -32,6 +32,7 @@
 <!--     <script type="text/javascript" src="js/addUploadForm.js"></script> -->
 </head>
 <body>
+	<canvas id="enlarger"></canvas>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
