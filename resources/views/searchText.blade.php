@@ -10,18 +10,22 @@ use App\User;
 <body>
 
 <div style="margin-left: 3em;">
-<a href="profile" style="margin-left:40em;">Profile</a>
-<a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
-<a href="wall" style="margin-left:3em;">Wall</a>
+<a style="font-size: 2em;margin-left:13em;" href="profile" style="margin-left:30em;">Profile</a>
 
-<a href="search" style="margin-left:3em;">FollowMe</a>
+<a style="font-size: 2em;margin-left:3em;" href="wall" style="margin-left:3em;">Wall</a>
 
-<h1>Search# page<h1>
+<a style="font-size: 2em;margin-left:3em;" href="search" style="margin-left:3em;">FollowMe</a>
+<hr />
+<div style="width: 100%">
+<h1 style="display: inline">Search by # </h1><h3 style="display: inline" >&nbsp or &nbsp  </h3><a style="text-decoration: none; font-size: 3em;" href="searchTag">Categories</a>
+</div><br />
+
+
 <form method="post" action="{{route('searchText.submit')}}">
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-	<input style="margin-left: 5em;" type="text" name="content4"/>
-	<input type="submit" value="Search"/>
+	<input style="margin-left: 25em;width:30em;" type="text" name="content4"/>
+	<input type="submit" value="Search"/><br /><br /><br />
 	
 
 	<?php
@@ -51,14 +55,14 @@ use App\User;
 
 <!-- 	I added an inline style here! Remove it if you write css -->
 <!-- 	PS: You get Invalid tag location warning! -->
-	<div class="post" id=<?= $post->pid; ?> style="width: 60%;"> 	
+	<div  class="post" id=<?= $post->pid; ?> style="width: 60%;margin-left:15em;"> 	
 		<hr style = 'border: 1px solid black' />
 		
 		<img style="width:50px; height:50px;" src="..\resources\uploads\<?= $output_prof[count($output_prof)-1]?>" alt="no pic" />
 		
 		
 		
-		<a href="{{ URL('profile_preview/'.$post->uid )}}"><?=  $post->firstname,' ', $post->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
+		<a style="font-size: 2em;margin-left:1em;" href="{{ URL('profile_preview/'.$post->uid )}}"><?=  $post->firstname,' ', $post->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
 		
 		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
 		<p>{{$post->created_at}}</p>

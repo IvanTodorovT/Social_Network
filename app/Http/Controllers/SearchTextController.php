@@ -31,7 +31,7 @@ public function submit(Request $request)
     	$join->on('u.id', '=', 'p.user_id');
     })
     ->select('u.id AS uid','p.id AS pid','u.firstname','u.lastname','u.created_at','p.text','p.photo','u.profile_pic')
-    ->where('text', 'like', '%'.$findme.'%')
+    ->where('text', 'like', '%#'.$findme.'%')
     ->get();
     
     foreach ($postove as $post) {

@@ -7,7 +7,11 @@ use App\Tags;
 $options = Tags::getDropDownOptions();
 ?>
 
+<a href="wall" style="margin-left:13.5em;font-size:2em;">Wall</a>
+<a href="profile" style="margin-left:3em;font-size:2em;">Profile</a>
 
+<a href="search" style="margin-left:3em;font-size:2em;">FollowMe</a>
+<div style="margin-right: 4em;">
 <form id='searchPhotoByTagForm' style='margin: 5vh; text-align: center;'>
 	<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div>
@@ -25,7 +29,7 @@ $options = Tags::getDropDownOptions();
 </form>
 <div id='resultContainer'>
 </div>
-
+</div>
 <script>
 $(function (){
 	$("#searchPhotoByTagForm").submit(function(e) {

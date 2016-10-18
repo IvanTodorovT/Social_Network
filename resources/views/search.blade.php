@@ -9,8 +9,8 @@ use Symfony\Component\VarDumper\VarDumper;
 <body>
 
 <div style="margin-left: 3em;">
-<a style="font-size: 2em;margin-left: 12em;" href="profile" style="margin-left:40em;">Profile</a>
-<a style="font-size: 2em;margin-left: 2em;" href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
+<a style="font-size: 2em;margin-left: 13em;" href="profile" style="margin-left:40em;">Profile</a>
+
 <a style="font-size: 2em;margin-left: 2em;" href="wall" style="margin-left:3em;">Wall</a>
 <a style="font-size: 2em;margin-left: 2em;" href="searchText" style="margin-left:3em;">Search</a>
 
@@ -26,7 +26,7 @@ use Symfony\Component\VarDumper\VarDumper;
 </form>
 @if(!empty($users))
 @foreach($users as $u)
-<div>
+<div style="padding-top:1em; width:12em;">
 
 <!-- <form method="POST" action="{{route('user.follow')}}">
 <input type="hidden" value="{{$u->id}}" name="user_id"/>
@@ -39,9 +39,9 @@ use Symfony\Component\VarDumper\VarDumper;
 <h2 style="display: inline;margin-top:2em;">{{$u->firstname}} {{ $u->lastname}} &nbsp</h2>
 
 @if(in_array($u->id,$followers_ids))
-<button style="display: inline;margin-top:1em;margin-left:2em;" onclick="unfollow(this,{{$u->id}})">Unfollow</button>
+<button style="float:right" onclick="unfollow(this,{{$u->id}})">Unfollow</button>
 @else
-<button style="display: inline;margin-top:1em;margin-left:3em;" onclick="follow(this,{{$u->id}})">Follow</button>
+<button style="float:right" onclick="follow(this,{{$u->id}})">Follow</button>
 @endif
 </div>
 @endforeach
