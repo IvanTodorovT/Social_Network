@@ -69,8 +69,6 @@ use App\Post;
 			<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
 			<span class="countComments">{{$comments}} </span>
 		</div>
-		
-		<div class='likeButtons'></div>
 	
 	</div>
 <?php endforeach;?>
