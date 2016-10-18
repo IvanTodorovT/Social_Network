@@ -113,3 +113,4 @@ Route::get('/createAlbum', 'CreateAlbumController@uploadForm');
 Route::post('/createAlbum', 'CreateAlbumController@uploadFiles');
 	
 
+Route::get('/album_preview/{album_id}',['as'=>'show.album','uses'=>'CreateAlbumController@preview']);

@@ -46,7 +46,7 @@ class UploadController extends Controller {
 		file_put_contents($photo, $copy);
 		$this->deleteTmp();
 		
-		$album_id = empty($_POST['album']) ? NULL : $_POST['album'];
+		$album_id = empty($_POST['album']) ? '12' : $_POST['album'];
 		
 		var_dump($album_id);
 
