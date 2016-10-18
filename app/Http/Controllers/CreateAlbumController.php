@@ -86,6 +86,7 @@ class CreateAlbumController extends Controller {
 	{
 		return @\DB::table('albums')->where('id', $album_id)->first();
 	}
+
 	
 	
 	

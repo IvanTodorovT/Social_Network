@@ -49,7 +49,6 @@ class UploadController extends Controller {
 		
 		$album_id = empty($_POST['album']) ? NULL : $_POST['album'];
 
-		
 
 		$text = empty($_POST['text']) ? NULL : $_POST['text'];
 		$tag1 = empty($_POST['tag1']) ? NULL : $_POST['tag1'];
