@@ -4,14 +4,20 @@
 
 @section('content')
 
+<link rel="stylesheet" type="text/css"
+	href="=\resources\assets\template-edit.css">
 
+</head>
+<body>
+
+	
 <a href="wall" style="margin-left:40em;">Wall</a>
 <a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
 <a href="profile" style="margin-left:3em;">Profile</a>
 		<a href="search" style="margin-left: 3em;">FollowMe</a>
 		<a href="searchText" style="margin-left: 3em;">Search</a>
 
-<div style="margin-left: 3em;">
+<div class="edit" style="margin-left: 3em;">
 <h1 >Edit profile page:</h1>
 
 <form method="post" action="{{route('edit.submit')}}">

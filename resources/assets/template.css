@@ -1,6 +1,29 @@
 @CHARSET "UTF-8";
-
+html{
+	width: 130em;
+	
+}
 
 label{
 	font-size: 1.5em;
+}
+
+.anchor{
+	display:inline;
+	font-size: 2em;
+	margin-left: 12em;
+	
+}
+
+#uploadForm{
+	float: right;
+	margin-top: -36em;
+margin-right: 7em;
+padding: 2em;
+border: 1px solid black;
+}
+
+#imageTag {
+	border: 3px solid black;
+	
 }
