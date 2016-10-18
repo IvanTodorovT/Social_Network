@@ -18,7 +18,13 @@ use App\Post;
 			</body>
 
 	<?php
-	
+
+/* 	 $postove = DB::select('SELECT u.firstname, u.lastname,u.profile_pic,u.id as uid,p.id as pid,p.photo,p.text,a.name FROM
+	 users2 u  JOIN posts p ON
+	 u.id = p.user_id
+	 JOIN albums a
+	 on p.album_id= a.id');  */
+
 	foreach ( $posts as $post ) :
 	
 	$comments = isset($numbers['comments'][$post->id]) ? $numbers['comments'][$post->id] : 0;
@@ -53,6 +59,7 @@ use App\Post;
 		<a href="{{ URL('profile_preview/'.$post->author->id )}}""><?=  $post->author->firstname,' ', $post->author->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
 		
 		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
+
 		
 		<div class="likeButtons">
 			<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
@@ -63,6 +70,8 @@ use App\Post;
 			<span class="countComments">{{$comments}} </span>
 		</div>
 		
+		<div class='likeButtons'></div>
+	
 	</div>
 <?php endforeach;?>
 

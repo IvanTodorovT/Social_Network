@@ -41,16 +41,17 @@ use App\User;
 
 <!-- 	I added an inline style here! Remove it if you write css -->
 <!-- 	PS: You get Invalid tag location warning! -->
-	<div class="post" id=<?= $post->id; ?> style="width: 60%;"> 	
+	<div class="post" id=<?= $post->pid; ?> style="width: 60%;"> 	
 		<hr style = 'border: 1px solid black' />
 		
 		<img style="width:50px; height:50px;" src="..\resources\uploads\<?= $output_prof[count($output_prof)-1]?>" alt="no pic" />
 		
 		
 		
-		<a href="{{ URL('profile_preview/'.$post->id )}}""><?=  $post->firstname,' ', $post->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
+		<a href="{{ URL('profile_preview/'.$post->uid )}}""><?=  $post->firstname,' ', $post->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
 		
 		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
+		<p>{{$post->created_at}}</p>
 		<div class='likeButtons'></div>
 		
 	</div>

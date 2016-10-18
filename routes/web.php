@@ -107,3 +107,9 @@ Route::get('/searchText',['as'=>'searchText.test','uses'=>'SearchTextController@
 
 Route::get('/searchTag','SearchTagController@show');
 Route::post('/searchTag','SearchTagController@submit');
+
+
+Route::get('/createAlbum', 'CreateAlbumController@uploadForm');
+Route::post('/createAlbum', 'CreateAlbumController@uploadFiles');
+	
+
