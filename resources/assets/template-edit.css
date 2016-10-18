@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+
+
+.edit{
+	border:10px solid black;
+	
+}
+
+h1{
+	color:red;!important;
+}
+
+html{
+	background-color: red;	!important
+	
+}

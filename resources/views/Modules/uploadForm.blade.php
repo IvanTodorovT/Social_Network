@@ -4,9 +4,10 @@
 <!-- <form action='upload' method="post" enctype="multipart/form-data"> -->
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
    	<div>
-   		<label for='file'>Upload:</label>
+   	<label style="margin-left: 6em;" for="">Make post:</label><br />
+   		<p style="display: inline;">Upload:</p>
    		<input style='display: inline-block' id='file' type="file" name="file">
-   	</div>
+   	</div><br />
 		<div>
 	        <textarea rows="5" cols="50" name='text' placeholder='What do you think?'></textarea>
 		</div>
@@ -16,15 +17,15 @@
 $albums = DB::table('albums')->get();
 
 ?>
-<label for="album">Select album for your post:</label>
-<select name="album">
+
+<p style="display: inline;">Select album for your post:</p> <select name="album">
 
     @foreach($albums as $album)
      <option value="{{ $album->id }}">{{ $album->name}} </option>
 
     @endforeach
-</select> <label for="">or</label><a href="createAlbum"> Create new album</a>
-</div>
+</select> <p style="display: inline;"> or </p><a style="display: inline;" href="createAlbum"> Create new album</a>
+</div><br />
 		
 	<div>
 		<p> Would you like to select tags for your photo? </p>
@@ -37,7 +38,7 @@ $albums = DB::table('albums')->get();
 		<select name='tag3'>
 			<?= $options?>
 		</select>
-	</div>
+	</div><br />
 	<input type="submit">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
