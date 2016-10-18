@@ -14,6 +14,8 @@ use Redirect;
 use App\Post;
 
 use View;
+use App\Likes;
+use App\Comments;
 
 class SearchTextController extends Controller
 {
@@ -32,9 +34,17 @@ public function submit(Request $request)
     ->where('text', 'like', '%'.$findme.'%')
     ->get();
     
+    foreach ($postove as $post) {
+    	$idArray[] = $post->pid;
+    }
+     
+    $numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
+    $numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
+    
  
      	$data = [];
 	    $data['postove'] = $postove;
+	    $data['numbers'] = $numbers;
     	
  		return View::make("searchText",$data);
 	 	

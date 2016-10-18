@@ -1,4 +1,5 @@
 <?php
+use App\Likes;
 
 $relatedness = [];
 foreach ( $posts as $key => $post ){
@@ -13,7 +14,7 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 	if(empty($relatedness[$i])){
 		continue;
 	}
-	foreach ($relatedness[$i] as $key){
+	foreach ($relatedness[$i] as $index => $key){
 		$post = $posts[$key];
 		$who = $post->firstname . ' ' . $post->lastname;
 		$authorID = $post->user_id;
@@ -39,6 +40,19 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 					Album: <a href="' . $pathToAlbum . '">' . $post->albumName . '</a></p>'
 					: '';
 		
+		$comments = isset($numbers['comments'][$post->id]) ? $numbers['comments'][$post->id] : 0;
+		$likes = isset($numbers['like'][$post->id]) ? $numbers['like'][$post->id] : 0;
+		$dislikes = isset($numbers['dislike'][$post->id]) ? $numbers['dislike'][$post->id] : 0;
+		$likeStatus = $dislikeStatus = '';
+		if (isset($numbers['status'][$post->id])){
+			if ($numbers['status'][$post->id] == 'like'){
+				$likeStatus = 'inactive';
+			} else if ($numbers['status'][$post->id] == 'dislike') {
+				$dislikeStatus = 'inactive';
+			}
+		}
+		
+		
 		$output .= 
 			'<div class="' . $type . '" id=' . $id . ' style="display: inline-block; width: 30%; margin: 1em 10%;">
 				<p>
@@ -53,7 +67,14 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 				' . $album . '
 				<p style:"width: 100%"> Tags: ' . $tags . '</p>
 				<span style="opacity: 0.5;">' . $date . '</span>
-				<div class="likeButtons"></div>
+				<div class="likeButtons">
+					<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
+					<span class="countLikes">' . $likes . '</span>
+					<i style="color: red;" class="fa fa-thumbs-down ' . $dislikeStatus . '" aria-hidden="true"></i>
+					<span class="countDislikes">' . $dislikes . '</span>
+					<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
+					<span class="countComments">' . $comments . '</span>
+				</div>
 				<hr style="margin-top: 3.4em">
 			</div>';
 	}
