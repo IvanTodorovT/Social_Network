@@ -6,7 +6,7 @@
  
  
  ?>
-<a href='javascript:history.back(1);'>Back</a>;
+<a href='javascript:history.back(1);'>Back</a>
 
 <h1>Info for album:</h1>
 
@@ -29,11 +29,11 @@
 
 
 
-$postove = DB::select('SELECT u.firstname, u.lastname,u.profile_pic,u.id as uid,p.id as pid,p.photo,p.text,a.name, a.id as aid FROM
+$postove = DB::select('SELECT u.firstname, u.lastname,u.profile_pic,u.id as uid,p.created_at,p.id as pid,p.photo,p.text,a.name, a.id as aid FROM
 	 users2 u  JOIN posts p ON
 	 u.id = p.user_id
 	 JOIN albums a
-	 on p.album_id= a.id where a.id= 10 ');
+	 on p.album_id= a.id where a.id= ? order by p.created_at desc ',array($album->id));
     
     
 foreach ($postove as $post):
@@ -57,7 +57,7 @@ $output_prof = explode("\\",$user_pic)
 		<a href="{{ URL('profile_preview/'.$post->uid )}}""><?=  $post->firstname,' ', $post->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
 		
 		<img style="width:100px; height:100px;" src="..\..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
-		
+			<p>Posted at:{{$post->created_at}}</p>
 		
 		<div class='likeButtons'></div>
 	
