@@ -40,6 +40,8 @@
 		$.post("comments/" + table + '/' + id, {text: text, _token: token})
 		.done(function(err){
 			handleANewComment(err);
+			var countComments = $(form).parent().parent().find('.likeButtons').find('.countComments');
+			countComments.html(parseInt(countComments.html()) + 1)
 		})
 		.fail(function(err){
 			console.log(err)

@@ -18,11 +18,20 @@ use App\Post;
 			</body>
 
 	<?php
-
-
 	
 	foreach ( $posts as $post ) :
 	
+	$comments = isset($numbers['comments'][$post->id]) ? $numbers['comments'][$post->id] : 0;
+	$likes = isset($numbers['like'][$post->id]) ? $numbers['like'][$post->id] : 0;
+	$dislikes = isset($numbers['dislike'][$post->id]) ? $numbers['dislike'][$post->id] : 0;
+	$likeStatus = $dislikeStatus = '';
+	if (isset($numbers['status'][$post->id])){
+		if ($numbers['status'][$post->id] == 'like'){
+			$likeStatus = 'inactive';
+		} else if ($numbers['status'][$post->id] == 'dislike') {
+			$dislikeStatus = 'inactive';
+		}
+	}
 
 	$post_photo = $post->photo;
 	$output_post = explode("\\",$post_photo);
@@ -34,7 +43,7 @@ use App\Post;
 
 <!-- 	I added an inline style here! Remove it if you write css -->
 <!-- 	PS: You get Invalid tag location warning! -->
-	<div class="post" id=<?= $post->id; ?> style="width: 60%;"> 	
+	<div class="post" id=<?= $post->id; ?> style="width: 70%;"> 	
 		<hr style = 'border: 1px solid black' />
 		
 		<img style="width:50px; height:50px;" src="..\resources\uploads\<?= $output_prof[count($output_prof)-1]?>" alt="no pic" />
@@ -44,7 +53,15 @@ use App\Post;
 		<a href="{{ URL('profile_preview/'.$post->author->id )}}""><?=  $post->author->firstname,' ', $post->author->lastname;?></a><p>say: </p><p>{{ $post->text}}</p>
 		
 		<img style="width:100px; height:100px;" src="..\resources\uploads\<?= $output_post[count($output_post)-1]?>" alt="no pic" /><br><br />
-		<div class='likeButtons'></div>
+		
+		<div class="likeButtons">
+			<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
+			<span class="countLikes">{{$likes}}</span>
+			<i style="color: red;" class="fa fa-thumbs-down ' . $dislikeStatus . '" aria-hidden="true"></i>
+			<span class="countDislikes">{{$dislikes}}</span>
+			<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
+			<span class="countComments">{{$comments}} </span>
+		</div>
 		
 	</div>
 <?php endforeach;?>

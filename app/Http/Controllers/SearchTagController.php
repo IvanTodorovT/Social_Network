@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Tags;
+use App\Likes;
+use App\Comments;
 
 class SearchTagController extends Controller
 {
@@ -17,10 +19,20 @@ class SearchTagController extends Controller
 			return 'Are you hacking me? As if 6 tags were not enough';
 		}
 		$posts = Tags::getMatches($_POST['tags']);
+		
+		$idArray = [];
+		$statuses = [];
+		foreach ($posts as $post) {
+			$idArray[] = $post->id;
+		}
+		$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
+		$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
+		
 		return view('Modules.searchByTagResults', [
 				'posts' => $posts,
 				'tags' => $_POST['tags'],
-				'allTags' => Tags::getTags()
+				'allTags' => Tags::getTags(),
+				'numbers' => $numbers
 		]);
 	}
 }

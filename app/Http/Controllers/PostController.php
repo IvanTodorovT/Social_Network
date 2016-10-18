@@ -9,6 +9,8 @@ use DB;
 use Auth;
 use Redirect;
 use App\Post;
+use App\Likes;
+use App\Comments;
 
 
 class PostController extends Controller
@@ -58,8 +60,16 @@ class PostController extends Controller
     	->orderBy('created_at','desc')
     	->get();
     	
+    	foreach ($posts as $post) {
+    		$idArray[] = $post->id;
+    	}
+    	
+    	$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
+    	$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
+    	
     	$data = array (
-    		'posts' => $posts
+    		'posts' => $posts,
+    		'numbers' => $numbers
     	 );
     				
     	return view('wall', $data);

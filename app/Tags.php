@@ -28,7 +28,6 @@ class Tags
 		return @\DB::table('posts')
 				->leftJoin('users_friends', 'posts.user_id', '=', 'users_friends.user_id')
 				->join('users2', 'posts.user_id', '=', 'users2.id')
-				->leftJoin('post_status', 'posts.user_id', '=', 'post_status.id')
 				->leftJoin('albums', 'posts.album_id', '=', 'albums.id')
 				->select('users2.firstname', 'users2.lastname', 'users2.profile_pic as avatar',
 						'posts.id', 'posts.user_id', 'posts.text', 'posts.created_at',
@@ -38,6 +37,7 @@ class Tags
 				->whereIn('posts.tag2', $tags, 'or')
 				->whereIn('posts.tag3', $tags, 'or')
 				->where('users_friends.friend_id', \Auth::id())
+				->distinct()
 				->get()
 				->toArray();
 	}

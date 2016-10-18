@@ -34,4 +34,36 @@ class Likes
 				['user_id', $userId]
 		])->update(['status' => $status]);
 	}
+	
+// 	public static function getNumberOfLikes()
+// 	{
+		
+// 	}
+	
+	public static function getNumbers ($tableName, $refName, $refIDs)
+	{
+		$onlyNumbers = implode($refIDs);
+		if (!preg_match('/\w{1,13}_status$/', $tableName) || 
+				!preg_match('/\w{1,7}_id$/', $refName) || 
+				$onlyNumbers != floatval($onlyNumbers)){
+			return 'Invalid input data';
+		}
+		$posts = \DB::table($tableName)
+					->whereIn($refName, $refIDs)
+					->get();
+		
+		$who = Auth::id();
+		$numbers = [];
+		foreach ($posts as $post){
+			if ($post->status != 'delete'){
+				isset($numbers[$post->status][$post->$refName]) ? 
+						$numbers[$post->status][$post->$refName]++ : 
+						$numbers[$post->status][$post->$refName] = 1;
+			}
+			if ($post->user_id == $who){
+				$numbers['status'][$post->$refName] = $post->status;
+			}
+		}
+		return $numbers;
+	}
 }
