@@ -39,3 +39,10 @@
 p {
 	word-wrap: break-word;	/*this can end badly*/
 }
+
+#enlarger {
+	position: absolute; 
+	right:0;
+	bottom:0;
+	display: none;
+}

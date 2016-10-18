@@ -23,6 +23,7 @@
     <!-- Scripts -->
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="js/addLikes.js"></script>
+	<script type="text/javascript" src="js/basic.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
