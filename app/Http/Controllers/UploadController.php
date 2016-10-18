@@ -39,8 +39,9 @@ class UploadController extends Controller {
 			}
 		}
 		do {
-		$fileName = rand(0000, 9999) . $_FILES['file']['name'];
-		$photo = $path . DIRECTORY_SEPARATOR . $fileName;
+			$ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+			$fileName = uniqid(rand(), true) . '.' .  $ext;
+			$photo = $path . DIRECTORY_SEPARATOR . $fileName;
 		} while(file_exists($photo));
 		
 		file_put_contents($photo, $copy);
