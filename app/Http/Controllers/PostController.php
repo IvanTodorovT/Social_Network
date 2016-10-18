@@ -68,15 +68,15 @@ class PostController extends Controller
     	->select('u.id AS uid','p.id AS pid','a.id as aid','u.firstname','u.lastname','u.created_at','p.text','p.photo','u.profile_pic')
     	->get(); */
     	
-    	
+    	$idArray = $numbers = [];
     	foreach ($posts as $post) {
     		$idArray[] = $post->id;
     	}
     	
-  
-    	$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
-    	$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
-    	
+  		if ($idArray){
+	    	$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
+	    	$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
+  		}
     	$data = array (
     		'posts' => $posts,
     		'numbers' => $numbers
