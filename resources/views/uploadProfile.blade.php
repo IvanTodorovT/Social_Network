@@ -1,18 +1,20 @@
 @extends('layouts.app2')
  @section('content')
-<a href='javascript:history.back(1);'>Back</a><br><br />
+<a style='display: inline-block;font-size:2em;margin-left:1em;' href='javascript:history.back(1);'>Back</a><br><br />
 <div id='msg'></div>
+<hr />
+<div style="margin-left: 32em;margin-top:3em; border:1px solid black; display: inline-block;width: 30em;height: 15em">
 <form method='post' enctype="multipart/form-data">
 <!-- <form action='upload' method="post" enctype="multipart/form-data"> -->
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
    	<div>
-   		<label for='file'>Select new picture:</label><br />
-   		<input style='display: inline-block' id='file' type="file" name="file"><br />
+   		<h2 style="margin-left:2.5em;margin-top:1em;" for='file'>Select new picture:</h2><br />
+   		<input style='display: inline-block;margin-left:6.3em;margin-top:1em;' id='file' type="file" name="file"><br />
  
-	<br /><input type="submit">
+	<br /><input style='display: inline-block;margin-left:12em;margin-top:1em;' type="submit">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 </form>
-
+</div>
 <script>
 $(function (){
 	$("form").submit(function(e) {

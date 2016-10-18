@@ -9,17 +9,18 @@ use Symfony\Component\VarDumper\VarDumper;
 <body>
 
 <div style="margin-left: 3em;">
-<a href="profile" style="margin-left:40em;">Profile</a>
-<a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
-<a href="wall" style="margin-left:3em;">Wall</a>
-<a href="searchText" style="margin-left:3em;">Search</a>
+<a style="font-size: 2em;margin-left: 12em;" href="profile" style="margin-left:40em;">Profile</a>
+<a style="font-size: 2em;margin-left: 2em;" href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
+<a style="font-size: 2em;margin-left: 2em;" href="wall" style="margin-left:3em;">Wall</a>
+<a style="font-size: 2em;margin-left: 2em;" href="searchText" style="margin-left:3em;">Search</a>
 
+<hr />
+<h1>Follow new users<h1>
 
-<h1>Search page<h1>
 <form method="post" action="{{route('search.submit')}}">
 
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-	<input style="margin-left: 5em;" type="text" name="content3"/>
+	<input style="margin-left: 9em;" type="text" name="content3"/>
 	<input type="submit" value="Search"/>
 	
 </form>
@@ -35,12 +36,12 @@ use Symfony\Component\VarDumper\VarDumper;
 
 
 
-{{$u->firstname}}
+<h2 style="display: inline;margin-top:2em;">{{$u->firstname}} {{ $u->lastname}} &nbsp</h2>
 
 @if(in_array($u->id,$followers_ids))
-<button onclick="unfollow(this,{{$u->id}})">Unfollow</button>
+<button style="display: inline;margin-top:1em;margin-left:2em;" onclick="unfollow(this,{{$u->id}})">Unfollow</button>
 @else
-<button onclick="follow(this,{{$u->id}})">Follow</button>
+<button style="display: inline;margin-top:1em;margin-left:3em;" onclick="follow(this,{{$u->id}})">Follow</button>
 @endif
 </div>
 @endforeach
