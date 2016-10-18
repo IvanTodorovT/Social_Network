@@ -1,4 +1,10 @@
 <div class='comments' style="margin-top: 1.3em">
+
+@if (!is_array($commentsArray))
+<p>{{{$commentsArray}}}</p>
+<?php return;?>
+@endif
+
 @foreach ($commentsArray as $unusable)
 	<?php $comment = (array)$unusable;?>
     <div class='comment' id={{$comment['id']}}>
@@ -40,8 +46,11 @@
 		$.post("comments/" + table + '/' + id, {text: text, _token: token})
 		.done(function(err){
 			handleANewComment(err);
+			
 			var countComments = $(form).parent().parent().find('.likeButtons').find('.countComments');
 			countComments.html(parseInt(countComments.html()) + 1)
+
+			$(form).find('textarea').val('');
 		})
 		.fail(function(err){
 			console.log(err)

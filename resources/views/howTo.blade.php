@@ -36,6 +36,10 @@
 		$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
 		$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
 		
+
+<p> for every $post </p>
+
+
 		$comments = isset($numbers['comments'][$post->id]) ? $numbers['comments'][$post->id] : 0;
 		$likes = isset($numbers['like'][$post->id]) ? $numbers['like'][$post->id] : 0;
 		$dislikes = isset($numbers['dislike'][$post->id]) ? $numbers['dislike'][$post->id] : 0;
@@ -48,7 +52,6 @@
 			}
 		}
 		
-<p> for every $post </p>
 
 				<div class="likeButtons">
 					<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
