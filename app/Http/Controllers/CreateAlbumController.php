@@ -49,7 +49,7 @@ class CreateAlbumController extends Controller {
 		file_put_contents($photo, $copy);
 		$this->deleteTmp();
 		
-		$album_id = empty($_POST['album']) ? NULL : $_POST['album'];
+		$album_id = empty($_POST['album']) ? '1' : $_POST['album'];
 		if ($album_id) { 
 			if (!$this->validateAlbumExistance ($album_id)) {
 				return 'Album does not exist';

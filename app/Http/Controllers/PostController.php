@@ -73,6 +73,7 @@ class PostController extends Controller
     		$idArray[] = $post->id;
     	}
     	
+  
     	$numbers = Likes::getNumbers('post_status', 'post_id', $idArray);
     	$numbers['comments'] = Comments::getCommentsCount('post_comments', 'post_id', $idArray);
     	
@@ -93,8 +94,6 @@ class PostController extends Controller
     	);
     	 
     
-    
-    	 
     	 
     	return view('profile_preview', $data);
     	 

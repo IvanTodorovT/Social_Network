@@ -10,8 +10,12 @@
 <?php 
 
 $string = Auth::user()->profile_pic;
+$string= empty($_POST['profile_pic']) ? '..\resources\uploads\default.jpg' : $_POST['profile_pic'];
+DB::table('users2')->where('id', '=', Auth::user()->id)
+->update(
+		array('profile_pic' => $string)
+		);
 $output = explode("\\",$string);
-
 
 
 ?>
