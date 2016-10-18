@@ -67,18 +67,18 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 				</p>
 				<p>&nbsp;&nbsp;&nbsp;' . $text . '</p>
 				<div style="height: 30vh; text-align: center; vertical-align: middle">
-					<img style="max-width:30%; max-height:30vh;" src="' . $photo . '" alt="no pic">
+					<img style="max-width:100%; max-height:30vh;" src="' . $photo . '" alt="no pic">
 				</div>
 				' . $album . '
 				<p style:"width: 100%"> Tags: ' . $tags . '</p>
 				<span style="opacity: 0.5;">' . $date . '</span>
 				<div class="likeButtons">
-					<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
-					<span class="countLikes">' . $likes . '</span>
-					<i style="color: red;" class="fa fa-thumbs-down ' . $dislikeStatus . '" aria-hidden="true"></i>
-					<span class="countDislikes">' . $dislikes . '</span>
-					<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
 					<span class="countComments">' . $comments . '</span>
+					<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
+					<span class="countDislikes">' . $dislikes . '</span>
+					<i style="color: red;" class="fa fa-thumbs-down ' . $dislikeStatus . '" aria-hidden="true"></i>
+					<span class="countLikes">' . $likes . '</span>
+					<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
 				</div>
 				<hr style="margin-top: 3.4em">
 			</div>';
