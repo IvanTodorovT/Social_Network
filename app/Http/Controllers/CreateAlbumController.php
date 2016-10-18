@@ -86,26 +86,4 @@ class CreateAlbumController extends Controller {
 	{
 		return @\DB::table('albums')->where('id', $album_id)->first();
 	}
-	
-	
-	
-	public function preview($album_id){
-	
-		$album = DB::table('albums')->where('id', '=', $album_id)->first();
-	
-		$data = array (
-				'album' => $album
-		);
-	
-	
-	
-	
-	
-		return view('album_preview', $data);
-	
-	}
-	
-	
-	
-	
 }

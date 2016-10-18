@@ -18,7 +18,7 @@ class Comments
 					->select('users2.firstname', 'users2.lastname',
 							$tableName . '.id', $tableName . '.comment_text', $tableName . '.created_at')
 					->where($refName, $refId)
-					->orderBy($tableName . '.created_at', 'desc')->get();
+					->orderBy($tableName . '.created_at', 'desc')->get()->toArray();
 	}
 	
 	public static function getCommentsCount($tableName, $refName, $refIDs)

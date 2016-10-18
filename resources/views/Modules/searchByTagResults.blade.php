@@ -10,6 +10,11 @@ foreach ( $posts as $key => $post ){
 $output = '';
 $resultsPerView = 50;
 
+if (count($relatedness) == 0){
+	$output = '<h2 style="text-align: center">No search results</h2>';
+	$relatedness[0] = null; //fast workaround
+}
+
 for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $resultsPerView; $i--) {
 	if(empty($relatedness[$i])){
 		continue;
@@ -78,10 +83,6 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 				<hr style="margin-top: 3.4em">
 			</div>';
 	}
-}
-
-if (count($relatedness) == 0){
-	$output = '<h2 style="text-align: center">No search results</h2>';
 }
 ?>
 

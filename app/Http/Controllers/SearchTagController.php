@@ -16,7 +16,7 @@ class SearchTagController extends Controller
 	public function submit()
 	{
 		if(count($_POST['tags']) > 6){
-			return 'Are you hacking me? As if 6 tags were not enough';
+			return 'Are you hacking me? As if 6 tags were not enough!';
 		}
 		$posts = Tags::getMatches($_POST['tags']);
 		
