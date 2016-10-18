@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -9,7 +10,6 @@
 </head>
 <body>
 <?php 
-
 $string = Auth::user()->profile_pic;
 
 $string = empty($_POST['profile_pic']) ? '..\resources\uploads\default.jpg' : $_POST['profile_pic'];

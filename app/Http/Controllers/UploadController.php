@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use function League\Flysystem\get;
+use App\Tags;
 
 class UploadController extends Controller {
 	
 	public function uploadForm()
 	{
-		return view('Modules.uploadForm');
+		$options = Tags::getDropDownOptions();
+		
+		return view('Modules.uploadForm', ['options' => $options]);
 	}
 	
 	public function uploadFiles()

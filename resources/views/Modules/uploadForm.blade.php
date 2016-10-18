@@ -1,8 +1,3 @@
-<?php
-use App\Tags;
-
-$options = Tags::getDropDownOptions();
-?>
 
 <div id='up-frm-msg'></div>
 <form method='post' enctype="multipart/form-data">

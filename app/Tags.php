@@ -6,15 +6,19 @@ class Tags
 {
 	public static function getTags()
 	{
-		return \DB::table('post_tag')->pluck('name')->toArray();
+		return \DB::table('post_tag')->get()->toArray();
 	}
 	
 	public static function getDropDownOptions()
 	{
 		$tags = self::getTags();
-		$options = '<option value=\'NULL\'>---</option>';
-		foreach ($tags as $no => $tag){
-			$options .= '<option value=\'' . ($no + 1) . "'>" . $tag . '</option>';
+		$options = '<option value=\'\'>---</option>';
+		foreach ($tags as $tag){
+			$sortable[$tag->id] = $tag->name;
+		}
+		asort($sortable);
+		foreach ($sortable as $key => $value){
+			$options .= '<option value=\'' . $key . "'>" . $value . '</option>';
 		}
 		return $options;
 	}
