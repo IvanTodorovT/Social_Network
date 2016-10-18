@@ -11,15 +11,9 @@
 <?php 
 
 $string = Auth::user()->profile_pic;
-/* $string= empty($_POST['profile_pic']) ? '..\resources\uploads\default.jpg' : $_POST['profile_pic'];
-DB::table('users2')->where('id', '=', Auth::user()->id)
-->update(
-		array('profile_pic' => $string)
-		); */
 
+$string = empty($_POST['profile_pic']) ? '..\resources\uploads\default.jpg' : $_POST['profile_pic'];
 
-
-$string = empty(Auth::user()->profile_pic) ? '..\resources\uploads\default.jpg' : Auth::user()->profile_pic;
 DB::table('users2')->where('id', '=', Auth::user()->id)
 ->update(
 		array('profile_pic' => $string)
@@ -27,7 +21,7 @@ DB::table('users2')->where('id', '=', Auth::user()->id)
 		
 $output = explode("\\",$string);
 
-
+var_dump($output[count($output)-1]);
 ?>
 <div class="anchor">
 <a href="wall" >Wall</a>

@@ -89,12 +89,12 @@ use App\Http\Controllers\FollowController;
 		
 
 		<div class="likeButtons">
-			<i style="color: green;" class="fa fa-thumbs-up ' . $likeStatus . '" aria-hidden="true"></i>
-			<span class="countLikes">{{$likes}}</span>
-			<i style="color: red;" class="fa fa-thumbs-down ' . $dislikeStatus . '" aria-hidden="true"></i>
-			<span class="countDislikes">{{$dislikes}}</span>
-			<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
 			<span class="countComments">{{$comments}} </span>
+			<i style="color: orange;" class="fa fa-comment" aria-hidden="true"></i>
+			<span class="countDislikes">{{$dislikes}}</span>
+			<i style="color: red;" class="fa fa-thumbs-down {{$dislikeStatus}}" aria-hidden="true"></i>
+			<span class="countLikes">{{$likes}}</span>
+			<i style="color: green;" class="fa fa-thumbs-up {{$likeStatus}}" aria-hidden="true"></i>
 		</div>
 
 	
