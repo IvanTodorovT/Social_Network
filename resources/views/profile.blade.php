@@ -3,33 +3,38 @@
 @section('content')
 
 
-
+<link rel="stylesheet" type="text/css"
+	href="=\resources\assets\template.css">
 
 </head>
 <body>
 <?php 
 
 $string = Auth::user()->profile_pic;
+
 $string = empty($_POST['profile_pic']) ? '..\resources\uploads\default.jpg' : $_POST['profile_pic'];
+
 DB::table('users2')->where('id', '=', Auth::user()->id)
 ->update(
 		array('profile_pic' => $string)
 		);
+		
 $output = explode("\\",$string);
 
 var_dump($output[count($output)-1]);
 ?>
-
+<div class="anchor">
 <a href="wall" style="margin-left:40em;">Wall</a>
-<a href="/ittalents/Final/social_lara/Final3/public/" style="margin-left:3em;">Welcome</a>
 <a href="edit" style="margin-left:3em;">Edit</a>
 <a href="searchText" style="margin-left:3em;">Search</a>
 <a href="search" style="margin-left:3em;">FollowMe</a>
+</div>
 
 <div style="margin-left: 3em;">
-<h1 >Profile page:</h1>
-		<div class="container" style="margin-top:3em;">
-		<img style="width:150px; height:150px;" src="..\resources\uploads\<?= $output[count($output)-1]?>" alt="no pic" /><br>
+<h1 >My profile page</h1>
+
+		<div class="container" style="margin-top:3em;margin-left:0em;margin-bottom:1em;">
+		<img style="width:200px; height:200px;margin-bottom: 2em;" src="..\resources\uploads\<?= $output[count($output)-1]?>" alt="no pic" /><br>
 			<label for="">First name: {{  Auth::user()->firstname }}</label> <br>
 			<label for="">Last name: {{  Auth::user()->lastname }}</label> <br>
 			<label for="">Username: {{  Auth::user()->username }}</label> <br>
