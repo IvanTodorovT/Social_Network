@@ -69,15 +69,19 @@ function addLikes(){
 		}
 		
 		if (!table || !id || !status){
-			console.log ('Bugsplash! \n table = ' + table + '\n id = ' + id + '\n status = ' + status);
+			console.log ('Bugsplash!');// \n table = ' + table + '\n id = ' + id + '\n status = ' + status);
 		}
+		
 		$.get("like", {table: table, refId: id, status: status})
 		.done(function(data){
+			//pop-up
 			$('#likeButtonsPopUp').html(data);
 			$('#likeButtonsPopUp').css({'display': 'inline-block',
 				'left': e.pageX, 'top': e.pageY
 			});
 		    $("#likeButtonsPopUp").fadeOut(2500);
+		    
+		    //liking visualisation
 		    if(data == 'deleted'){
 		    	target.toggleClass('inactive');
 		    	if (target.hasClass('fa-thumbs-up')) {
@@ -97,7 +101,7 @@ function addLikes(){
 		    		target.parent().find('.countDislikes')
 		    				.html(parseInt(target.parent().find('.countDislikes').html()) + 1);
 		    	}
-		    }
+		    }	
 		})
 		.fail(function(err){
 			console.log(err)

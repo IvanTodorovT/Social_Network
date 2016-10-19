@@ -48,7 +48,7 @@ $(function (){
 			$('#resultContainer').html(view);
 		})
 		.fail(function(err){
-			console.log(err)
+			console.log(err.responseText);
 		});
 	});
 });

@@ -58,12 +58,14 @@ $(function (){
 	            if (data){
 					$("#up-frm-msg").html("<h3>" + data + "</h3><hr>");
 	            }
+	    	    $("form").find('#file').val('');
+	    	    $("form").select('textarea').val('');
 	        },
 	        cache: false,
 	        contentType: false,
 	        processData: false
 	    });
-	    
+
 	    e.preventDefault();
 	});
 });

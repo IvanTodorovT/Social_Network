@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Tags
+use Illuminate\Database\Eloquent\Model;
+
+class Tags extends Model
 {
 	public static function getTags()
 	{

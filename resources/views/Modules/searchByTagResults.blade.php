@@ -33,9 +33,9 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 		$text = $post->text;
 	
 		$tagsArray = [];
-		$post->tag1 ? $tagsArray[] = $allTags[($post->tag1 - 1)] : null;
-		$post->tag2 ? $tagsArray[] = $allTags[($post->tag2 - 1)] : null;
-		$post->tag3 ? $tagsArray[] = $allTags[($post->tag3 - 1)] : null;
+		$post->tag1 ? $tagsArray[] = $allTags[($post->tag1 - 1)]->name : null;
+		$post->tag2 ? $tagsArray[] = $allTags[($post->tag2 - 1)]->name : null;
+		$post->tag3 ? $tagsArray[] = $allTags[($post->tag3 - 1)]->name : null;
 		$tags = implode(', ', $tagsArray);
 		$date = $post->created_at;
 		
@@ -43,7 +43,7 @@ for ($i = max(array_keys($relatedness)); $i > 0 && $i > count($relatedness) - $r
 		$pathToAlbum = ''; // for when the album view is ready!
 		$album = $post->albumName ? '<p class="album" id=' . $albumID . '>
 					Album: <a href="' . $pathToAlbum . '">' . $post->albumName . '</a></p>'
-					: '';
+					: '<p>No album</p>';
 		
 		$comments = isset($numbers['comments'][$post->id]) ? $numbers['comments'][$post->id] : 0;
 		$likes = isset($numbers['like'][$post->id]) ? $numbers['like'][$post->id] : 0;
